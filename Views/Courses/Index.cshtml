@@ -4,44 +4,36 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Cursos</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Create Nuevo Curso</a>
 </p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Type)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ImageName)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
+
+
+        <div class="Curso py-5">
+        <div class="container">
+          <div class="row">
+            @foreach (var item in Model) {
+        <a class="col-md-4" asp-action="Details" asp-route-id="@item.Id" style="flex-direction : column;">
+             <img src="@("~/assets/images/courses/"+item.ImageName)" asp-append-version="true" style="z-index: 1; border-radius: 10px;" width="100%" height="100%"/>
+             <div class="overlay" style="width : 100%; height : 100%; background : rgba(0,0,0,.5); z-index: 2;"></div>
+            <h2 class="text-light" style="position : absolute; bottom: 0; left : 10%; z-index: 3;">
                 @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Type)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ImageName)
-            </td>
-            <td>
+            </h2>
+           
+           <!--
+
+  <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
                 <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
             </td>
-        </tr>
+           -->
+          
+        </a>
 }
-    </tbody>
-</table>
+          </div>
+        </div>
+      </div>
+
