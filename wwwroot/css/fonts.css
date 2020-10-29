@@ -1,0 +1,19 @@
+@font-face {
+  font-family: "Google Sans";
+  src: url("../assets/fonts/Google/ProductSans-Regular.ttf");
+}
+
+@font-face {
+  font-family: "Google Sans Italic";
+  src: url("../assets/fonts/Google/ProductSans-Italic.ttf");
+}
+
+@font-face {
+  font-family: "Google Sans Bold";
+  src: url("../assets/fonts/Google/ProductSans-Bold.ttf");
+}
+
+@font-face {
+  font-family: "Google Sans Light";
+  src: url("../assets/fonts/Google/ProductSans-Thin.ttf");
+}
