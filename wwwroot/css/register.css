@@ -1,0 +1,33 @@
+
+
+.formulario {
+
+    background: rgba(128, 128, 128, 0.5);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 30px  rgba(128, 128, 128, 0.5);
+    
+
+}
+
+.imagen {
+    position: relative;
+    padding: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    background: url(../assets//images/register/universidad.jpeg);
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-size: cover;
+  }
+
+  .form-control{
+    background: rgba(0, 0, 0,.3);
+    border-style:  none;
+    transition: 0.5s ease-in;
+}
+.form-control::placeholder{
+    color:white;
+
+}
