@@ -4,6 +4,8 @@
     ViewData["Title"] = "Index";
 }
 
+<link rel="stylesheet" href="~/css/courses.css" />
+
 <h1>Cursos</h1>
 
 <p>
@@ -15,10 +17,9 @@
         <div class="container">
           <div class="row">
             @foreach (var item in Model) {
-        <a class="col-md-4" asp-action="Details" asp-route-id="@item.Id" style="flex-direction : column;">
-             <img src="@("~/assets/images/courses/"+item.ImageName)" asp-append-version="true" style="z-index: 1; border-radius: 10px;" width="100%" height="100%"/>
-             <div class="overlay" style="width : 100%; height : 100%; background : rgba(0,0,0,.5); z-index: 2;"></div>
-            <h2 class="text-light" style="position : absolute; bottom: 0; left : 10%; z-index: 3;">
+        <a class="col-sm-6 col-md-4 col-xl-3 course" asp-action="Details" asp-route-id="@item.Id" >
+             <img src="@("~/assets/images/courses/"+item.ImageName)" asp-append-version="true" class="course-image" width="100%" height="100%"/>
+            <h2 class="text-light course-name" >
                 @Html.DisplayFor(modelItem => item.Name)
             </h2>
            

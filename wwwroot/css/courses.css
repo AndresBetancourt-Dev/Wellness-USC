@@ -1,0 +1,16 @@
+.course {
+  flex-direction: column;
+  margin: 20px 0;
+}
+
+.course-image {
+  z-index: 1;
+  border-radius: 10px;
+}
+
+.course-name {
+  position: absolute;
+  bottom: 0;
+  left: 10%;
+  z-index: 3;
+}

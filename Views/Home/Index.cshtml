@@ -2,9 +2,39 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="container home">
-    <img src="~/assets/images/home/background.jpg" width="100%" height="100%" />
-</div>
-<div class="container" style="height : 200vh">
+<link rel="stylesheet" href="~/css/home.css" />
 
+<div class="container home">
+    <div class="row align-items-center home-section">
+        <div class="col-md-6">
+            <h2>
+                Desarrolla tu pasión <br>
+                artística
+            </h2>
+        </div>
+        <div class="col-md-6 d-flex align-items-center">
+            <img src="~/assets/images/home/pintora.png" width="100%" height="100%" />
+        </div>
+    </div>
+    <div class="row align-items-center home-section">
+        <div class="col-md-6">
+            <img src="~/assets/images/home/alica.png" id="alica" width="100%" height="100%" />
+        </div>
+        <div class="col-md-6">
+            <h2>
+                Mejora tu rendimiento deportivo
+            </h2>
+        </div>
+    </div>
+    <div class="row align-items-center home-section">
+        <div class="col-md-6">
+            <h2>
+                Ven y entrena con <br>
+                nosotros.
+            </h2>
+        </div>
+        <div class="col-md-6">
+            <img src="~/assets/images/home/gimnasta.png" width="100%" height="100%" />
+        </div>
+    </div>
 </div>

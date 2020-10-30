@@ -2,6 +2,7 @@
 
 .navbar {
   position: fixed;
+  z-index: 100;
 }
 
 a.navbar-brand {
@@ -17,10 +18,14 @@ a.navbar-brand img {
   height: 100%;
 }
 
+.main-fill {
+  width: 100%;
+  height: 150px;
+}
+
 .nav-link {
   color: white;
   font-weight: bold;
-  letter-spacing: 0.15em;
 }
 
 /* Sticky footer styles
@@ -37,7 +42,10 @@ html {
 .app-body {
   background-color: black;
   color: white;
-  font-family: "Google Sans", sans-serif;
+  font-family: "Neometric";
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
 }
 
 .navbar {

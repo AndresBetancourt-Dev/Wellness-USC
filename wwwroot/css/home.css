@@ -1,0 +1,37 @@
+.home-section {
+  min-height: 80vh;
+  margin: 2.5% 0;
+}
+
+.home .col-md-6 img {
+  width: 105%;
+  height: 105%;
+}
+
+#alica {
+  width: 60%;
+  height: 60%;
+}
+
+.home .col-md-6 img:nth-child(2) {
+  width: 65%;
+  height: 65%;
+}
+
+.home .col-md-6 h2 {
+  font-size: 4.5em;
+}
+
+@media screen and (max-width: 990px) {
+  .home .col-md-6 h2 {
+    font-size: 3.5em;
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .home .col-md-6 h2 {
+    font-size: 2.5em;
+    text-align: center;
+  }
+}
