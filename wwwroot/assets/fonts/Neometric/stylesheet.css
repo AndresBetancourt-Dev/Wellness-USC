@@ -1,0 +1,162 @@
+@font-face {
+    font-family: 'Neometric';
+    src: url('Neometric-Black.woff2') format('woff2'),
+        url('Neometric-Black.woff') format('woff');
+    font-weight: 800;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Neometric';
+    src: url('Neometric-ExtraBold.woff2') format('woff2'),
+        url('Neometric-ExtraBold.woff') format('woff');
+    font-weight: 800;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Neometric';
+    src: url('Neometric-ExtraBoldItalic.woff2') format('woff2'),
+        url('Neometric-ExtraBoldItalic.woff') format('woff');
+    font-weight: 800;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Neometric';
+    src: url('Neometric-BoldItalic.woff2') format('woff2'),
+        url('Neometric-BoldItalic.woff') format('woff');
+    font-weight: 600;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Neometric';
+    src: url('Neometric-BlackItalic.woff2') format('woff2'),
+        url('Neometric-BlackItalic.woff') format('woff');
+    font-weight: 800;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Neometric';
+    src: url('Neometric-ExtraLightItalic.woff2') format('woff2'),
+        url('Neometric-ExtraLightItalic.woff') format('woff');
+    font-weight: 200;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Neometric';
+    src: url('Neometric-Hairline.woff2') format('woff2'),
+        url('Neometric-Hairline.woff') format('woff');
+    font-weight: 100;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Neometric';
+    src: url('Neometric-Heavy.woff2') format('woff2'),
+        url('Neometric-Heavy.woff') format('woff');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Neometric';
+    src: url('Neometric-ExtraLight.woff2') format('woff2'),
+        url('Neometric-ExtraLight.woff') format('woff');
+    font-weight: 200;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Neometric';
+    src: url('Neometric-HairlineItalic.woff2') format('woff2'),
+        url('Neometric-HairlineItalic.woff') format('woff');
+    font-weight: 100;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Neometric';
+    src: url('Neometric-HeavyItalic.woff2') format('woff2'),
+        url('Neometric-HeavyItalic.woff') format('woff');
+    font-weight: 900;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Neometric';
+    src: url('Neometric-LightItalic.woff2') format('woff2'),
+        url('Neometric-LightItalic.woff') format('woff');
+    font-weight: 300;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Neometric';
+    src: url('Neometric-Light.woff2') format('woff2'),
+        url('Neometric-Light.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Neometric';
+    src: url('Neometric-Italic.woff2') format('woff2'),
+        url('Neometric-Italic.woff') format('woff');
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Neometric';
+    src: url('Neometric-Medium.woff2') format('woff2'),
+        url('Neometric-Medium.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Neometric';
+    src: url('Neometric-MediumItalic.woff2') format('woff2'),
+        url('Neometric-MediumItalic.woff') format('woff');
+    font-weight: 500;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Neometric';
+    src: url('Neometric-Regular.woff2') format('woff2'),
+        url('Neometric-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Neometric';
+    src: url('Neometric-Bold.woff2') format('woff2'),
+        url('Neometric-Bold.woff') format('woff');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
