@@ -14,7 +14,7 @@ namespace Wellness_USC.Models
         {
         }
 
-        public DbSet<Profesores> Profesores { get; set; }
+        public DbSet<Profesor> Profesores { get; set; }
 
     }
 }

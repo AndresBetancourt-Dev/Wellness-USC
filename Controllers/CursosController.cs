@@ -9,22 +9,22 @@ using Wellness_USC.Models;
 
 namespace Wellness_USC.Controllers
 {
-    public class HorariosController : Controller
+    public class CursosController : Controller
     {
-        private readonly HorarioDbContext _context;
+        private readonly ClaseDbContext _context;
 
-        public HorariosController(HorarioDbContext context)
+        public CursosController(ClaseDbContext context)
         {
             _context = context;
         }
 
-        // GET: Horarios
+        // GET: Cursoes
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Horario.ToListAsync());
+            return View(await _context.Cursos.ToListAsync());
         }
 
-        // GET: Horarios/Details/5
+        // GET: Cursoes/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -32,39 +32,39 @@ namespace Wellness_USC.Controllers
                 return NotFound();
             }
 
-            var horario = await _context.Horario
-                .FirstOrDefaultAsync(m => m.Id_Horario == id);
-            if (horario == null)
+            var curso = await _context.Cursos
+                .FirstOrDefaultAsync(m => m.CursoId == id);
+            if (curso == null)
             {
                 return NotFound();
             }
 
-            return View(horario);
+            return View(curso);
         }
 
-        // GET: Horarios/Create
+        // GET: Cursoes/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Horarios/Create
+        // POST: Cursoes/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id_Horario,release_date")] Horario horario)
+        public async Task<IActionResult> Create([Bind("CursoId,Name,Type,ImageName")] Curso curso)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(horario);
+                _context.Add(curso);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(horario);
+            return View(curso);
         }
 
-        // GET: Horarios/Edit/5
+        // GET: Cursoes/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -72,22 +72,22 @@ namespace Wellness_USC.Controllers
                 return NotFound();
             }
 
-            var horario = await _context.Horario.FindAsync(id);
-            if (horario == null)
+            var curso = await _context.Cursos.FindAsync(id);
+            if (curso == null)
             {
                 return NotFound();
             }
-            return View(horario);
+            return View(curso);
         }
 
-        // POST: Horarios/Edit/5
+        // POST: Cursoes/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id_Horario,release_date")] Horario horario)
+        public async Task<IActionResult> Edit(int id, [Bind("CursoId,Name,Type,ImageName")] Curso curso)
         {
-            if (id != horario.Id_Horario)
+            if (id != curso.CursoId)
             {
                 return NotFound();
             }
@@ -96,12 +96,12 @@ namespace Wellness_USC.Controllers
             {
                 try
                 {
-                    _context.Update(horario);
+                    _context.Update(curso);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!HorarioExists(horario.Id_Horario))
+                    if (!CursoExists(curso.CursoId))
                     {
                         return NotFound();
                     }
@@ -112,10 +112,10 @@ namespace Wellness_USC.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(horario);
+            return View(curso);
         }
 
-        // GET: Horarios/Delete/5
+        // GET: Cursoes/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -123,30 +123,30 @@ namespace Wellness_USC.Controllers
                 return NotFound();
             }
 
-            var horario = await _context.Horario
-                .FirstOrDefaultAsync(m => m.Id_Horario == id);
-            if (horario == null)
+            var curso = await _context.Cursos
+                .FirstOrDefaultAsync(m => m.CursoId == id);
+            if (curso == null)
             {
                 return NotFound();
             }
 
-            return View(horario);
+            return View(curso);
         }
 
-        // POST: Horarios/Delete/5
+        // POST: Cursoes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var horario = await _context.Horario.FindAsync(id);
-            _context.Horario.Remove(horario);
+            var curso = await _context.Cursos.FindAsync(id);
+            _context.Cursos.Remove(curso);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool HorarioExists(int id)
+        private bool CursoExists(int id)
         {
-            return _context.Horario.Any(e => e.Id_Horario == id);
+            return _context.Cursos.Any(e => e.CursoId == id);
         }
     }
 }

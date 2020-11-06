@@ -21,7 +21,7 @@ namespace Wellness_USC.Controllers
         // GET: Clases
         public async Task<IActionResult> Index()
         {
-            var claseDbContext = _context.Clase.Include(c => c.Course).Include(c => c.Horario).Include(c => c.Profesores);
+            var claseDbContext = _context.Clases.Include(c => c.Curso).Include(c => c.Profesor);
             return View(await claseDbContext.ToListAsync());
         }
 
@@ -33,11 +33,10 @@ namespace Wellness_USC.Controllers
                 return NotFound();
             }
 
-            var clase = await _context.Clase
-                .Include(c => c.Course)
-                .Include(c => c.Horario)
-                .Include(c => c.Profesores)
-                .FirstOrDefaultAsync(m => m.Id_Clase == id);
+            var clase = await _context.Clases
+                .Include(c => c.Curso)
+                .Include(c => c.Profesor)
+                .FirstOrDefaultAsync(m => m.ClaseId == id);
             if (clase == null)
             {
                 return NotFound();
@@ -49,9 +48,8 @@ namespace Wellness_USC.Controllers
         // GET: Clases/Create
         public IActionResult Create()
         {
-            ViewData["CoursesId"] = new SelectList(_context.Set<Course>(), "Id", "Id");
-            ViewData["HorarioId"] = new SelectList(_context.Set<Horario>(), "Id_Horario", "Id_Horario");
-            ViewData["ProfesoresId"] = new SelectList(_context.Set<Profesores>(), "Id_Profesores", "Id_Profesores");
+            ViewData["CursoId"] = new SelectList(_context.Cursos, "CursoId", "Name");
+            ViewData["ProfesorId"] = new SelectList(_context.Profesores, "ProfesorId", "FirstName");
             return View();
         }
 
@@ -60,7 +58,7 @@ namespace Wellness_USC.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id_Clase,cantidad,Type,CoursesId,HorarioId,ProfesoresId")] Clase clase)
+        public async Task<IActionResult> Create([Bind("ClaseId,Name,Quantity,StartDate,FinishDate,StartHour,EndHour,CursoId,ProfesorId")] Clase clase)
         {
             if (ModelState.IsValid)
             {
@@ -68,9 +66,8 @@ namespace Wellness_USC.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CoursesId"] = new SelectList(_context.Set<Course>(), "Id", "Id", clase.CoursesId);
-            ViewData["HorarioId"] = new SelectList(_context.Set<Horario>(), "Id_Horario", "Id_Horario", clase.HorarioId);
-            ViewData["ProfesoresId"] = new SelectList(_context.Set<Profesores>(), "Id_Profesores", "Id_Profesores", clase.ProfesoresId);
+            ViewData["CursoId"] = new SelectList(_context.Cursos, "CursoId", "Name", clase.CursoId);
+            ViewData["ProfesorId"] = new SelectList(_context.Profesores, "ProfesorId", "FirstName", clase.ProfesorId);
             return View(clase);
         }
 
@@ -82,14 +79,13 @@ namespace Wellness_USC.Controllers
                 return NotFound();
             }
 
-            var clase = await _context.Clase.FindAsync(id);
+            var clase = await _context.Clases.FindAsync(id);
             if (clase == null)
             {
                 return NotFound();
             }
-            ViewData["CoursesId"] = new SelectList(_context.Set<Course>(), "Id", "Id", clase.CoursesId);
-            ViewData["HorarioId"] = new SelectList(_context.Set<Horario>(), "Id_Horario", "Id_Horario", clase.HorarioId);
-            ViewData["ProfesoresId"] = new SelectList(_context.Set<Profesores>(), "Id_Profesores", "Id_Profesores", clase.ProfesoresId);
+            ViewData["CursoId"] = new SelectList(_context.Cursos, "CursoId", "Name", clase.CursoId);
+            ViewData["ProfesorId"] = new SelectList(_context.Profesores, "ProfesorId", "FirstName", clase.ProfesorId);
             return View(clase);
         }
 
@@ -98,9 +94,9 @@ namespace Wellness_USC.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id_Clase,cantidad,Type,CoursesId,HorarioId,ProfesoresId")] Clase clase)
+        public async Task<IActionResult> Edit(int id, [Bind("ClaseId,Name,Quantity,StartDate,FinishDate,StartHour,EndHour,CursoId,ProfesorId")] Clase clase)
         {
-            if (id != clase.Id_Clase)
+            if (id != clase.ClaseId)
             {
                 return NotFound();
             }
@@ -114,7 +110,7 @@ namespace Wellness_USC.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ClaseExists(clase.Id_Clase))
+                    if (!ClaseExists(clase.ClaseId))
                     {
                         return NotFound();
                     }
@@ -125,9 +121,8 @@ namespace Wellness_USC.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CoursesId"] = new SelectList(_context.Set<Course>(), "Id", "Id", clase.CoursesId);
-            ViewData["HorarioId"] = new SelectList(_context.Set<Horario>(), "Id_Horario", "Id_Horario", clase.HorarioId);
-            ViewData["ProfesoresId"] = new SelectList(_context.Set<Profesores>(), "Id_Profesores", "Id_Profesores", clase.ProfesoresId);
+            ViewData["CursoId"] = new SelectList(_context.Cursos, "CursoId", "Name", clase.CursoId);
+            ViewData["ProfesorId"] = new SelectList(_context.Profesores, "ProfesorId", "FirstName", clase.ProfesorId);
             return View(clase);
         }
 
@@ -139,11 +134,10 @@ namespace Wellness_USC.Controllers
                 return NotFound();
             }
 
-            var clase = await _context.Clase
-                .Include(c => c.Course)
-                .Include(c => c.Horario)
-                .Include(c => c.Profesores)
-                .FirstOrDefaultAsync(m => m.Id_Clase == id);
+            var clase = await _context.Clases
+                .Include(c => c.Curso)
+                .Include(c => c.Profesor)
+                .FirstOrDefaultAsync(m => m.ClaseId == id);
             if (clase == null)
             {
                 return NotFound();
@@ -157,15 +151,15 @@ namespace Wellness_USC.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var clase = await _context.Clase.FindAsync(id);
-            _context.Clase.Remove(clase);
+            var clase = await _context.Clases.FindAsync(id);
+            _context.Clases.Remove(clase);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool ClaseExists(int id)
         {
-            return _context.Clase.Any(e => e.Id_Clase == id);
+            return _context.Clases.Any(e => e.ClaseId == id);
         }
     }
 }

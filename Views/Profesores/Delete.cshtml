@@ -1,4 +1,4 @@
-﻿@model Wellness_USC.Models.Profesores
+﻿@model Wellness_USC.Models.Profesor
 
 @{
     ViewData["Title"] = "Delete";
@@ -8,38 +8,37 @@
 
 <h3>Are you sure you want to delete this?</h3>
 <div>
-    <h4>Profesores</h4>
+    <h4>Profesor</h4>
     <hr />
     <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Name)
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.FirstName)
         </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Name)
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.FirstName)
         </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Apell)
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.LastName)
         </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Apell)
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.LastName)
         </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.ImageNameP)
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.FullName)
         </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.ImageNameP)
-            <dt class="col-sm-2">
-                Uploaded Image
-            </dt>
-            <dd class="col-sm-10">
-                <img src="@("~/assets/images/profesoress/"+Model.ImageNameP)" asp-append-version="true" width="250"
-height="250" />
-            </dd>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.FullName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ImageName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ImageName)
         </dd>
     </dl>
-
+    
     <form asp-action="Delete">
-        <input type="hidden" asp-for="Id_Profesores" />
+        <input type="hidden" asp-for="ProfesorId" />
         <input type="submit" value="Delete" class="btn btn-danger" /> |
         <a asp-action="Index">Back to List</a>
     </form>

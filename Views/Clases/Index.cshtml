@@ -13,19 +13,28 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.cantidad)
+                @Html.DisplayNameFor(model => model.Name)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Type)
+                @Html.DisplayNameFor(model => model.Quantity)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Course)
+                @Html.DisplayNameFor(model => model.StartDate)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Horario)
+                @Html.DisplayNameFor(model => model.FinishDate)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Profesores)
+                @Html.DisplayNameFor(model => model.StartHour)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EndHour)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Curso)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Profesor)
             </th>
             <th></th>
         </tr>
@@ -34,24 +43,33 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.cantidad)
+                @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Type)
+                @Html.DisplayFor(modelItem => item.Quantity)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Course.Id)
+                @Html.DisplayFor(modelItem => item.StartDate)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Horario.Id_Horario)
+                @Html.DisplayFor(modelItem => item.FinishDate)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Profesores.Id_Profesores)
+                @Html.DisplayFor(modelItem => item.StartHour)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id_Clase">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id_Clase">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id_Clase">Delete</a>
+                @Html.DisplayFor(modelItem => item.EndHour)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Curso.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Profesor.FirstName)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ClaseId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.ClaseId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.ClaseId">Delete</a>
             </td>
         </tr>
 }

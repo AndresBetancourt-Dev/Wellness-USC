@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
+using Wellness_USC.Models;
 
 namespace Wellness_USC.Areas.Identity.Data
 {
@@ -22,6 +23,8 @@ namespace Wellness_USC.Areas.Identity.Data
         [PersonalData]
         [Column(TypeName = "nvarchar(100)")]
         public string Identification { get; set; }
+
+        public virtual List<Registro> Registros { get; set; }
 
 
     }

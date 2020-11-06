@@ -221,6 +221,113 @@ namespace Wellness_USC.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
+            modelBuilder.Entity("Wellness_USC.Models.Clase", b =>
+                {
+                    b.Property<int>("ClaseId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("CursoId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("HorarioId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<int>("ProfesoresId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("ClaseId");
+
+                    b.HasIndex("CursoId");
+
+                    b.HasIndex("HorarioId");
+
+                    b.HasIndex("ProfesoresId");
+
+                    b.ToTable("Clase");
+                });
+
+            modelBuilder.Entity("Wellness_USC.Models.Curso", b =>
+                {
+                    b.Property<int>("CursoId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("ImageName")
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("Type")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("CursoId");
+
+                    b.ToTable("Curso");
+                });
+
+            modelBuilder.Entity("Wellness_USC.Models.Horario", b =>
+                {
+                    b.Property<int>("HorarioId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime?>("ReleaseDate")
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("HorarioId");
+
+                    b.ToTable("Horario");
+                });
+
+            modelBuilder.Entity("Wellness_USC.Models.Profesores", b =>
+                {
+                    b.Property<int>("ProfesoresId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("FirstName")
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("ImageName")
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("ProfesoresId");
+
+                    b.ToTable("Profesores");
+                });
+
+            modelBuilder.Entity("Wellness_USC.Models.Registro", b =>
+                {
+                    b.Property<int>("RegistroId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("ClaseId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Identification")
+                        .HasColumnType("nvarchar(100)");
+
+                    b.HasKey("RegistroId");
+
+                    b.HasIndex("ClaseId");
+
+                    b.HasIndex("Identification");
+
+                    b.ToTable("Registro");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -270,6 +377,40 @@ namespace Wellness_USC.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Wellness_USC.Models.Clase", b =>
+                {
+                    b.HasOne("Wellness_USC.Models.Curso", "Curso")
+                        .WithMany("Clases")
+                        .HasForeignKey("CursoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Wellness_USC.Models.Horario", "Horario")
+                        .WithMany("Clases")
+                        .HasForeignKey("HorarioId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Wellness_USC.Models.Profesores", "Profesores")
+                        .WithMany("Clases")
+                        .HasForeignKey("ProfesoresId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Wellness_USC.Models.Registro", b =>
+                {
+                    b.HasOne("Wellness_USC.Models.Clase", "Clase")
+                        .WithMany("Registros")
+                        .HasForeignKey("ClaseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Wellness_USC.Areas.Identity.Data.ApplicationUser", "User")
+                        .WithMany("Registros")
+                        .HasForeignKey("Identification");
                 });
 #pragma warning restore 612, 618
         }

@@ -11,38 +11,56 @@
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.cantidad)
+            @Html.DisplayNameFor(model => model.Name)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.cantidad)
+            @Html.DisplayFor(model => model.Name)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Type)
+            @Html.DisplayNameFor(model => model.Quantity)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Type)
+            @Html.DisplayFor(model => model.Quantity)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Course)
+            @Html.DisplayNameFor(model => model.StartDate)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Course.Id)
+            @Html.DisplayFor(model => model.StartDate)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Horario)
+            @Html.DisplayNameFor(model => model.FinishDate)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Horario.Id_Horario)
+            @Html.DisplayFor(model => model.FinishDate)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Profesores)
+            @Html.DisplayNameFor(model => model.StartHour)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Profesores.Id_Profesores)
+            @Html.DisplayFor(model => model.StartHour)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.EndHour)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.EndHour)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Curso)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Curso.Name)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Profesor)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Profesor.FirstName)
         </dd>
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.Id_Clase">Edit</a> |
+    <a asp-action="Edit" asp-route-id="@Model.ClaseId">Edit</a> |
     <a asp-action="Index">Back to List</a>
 </div>

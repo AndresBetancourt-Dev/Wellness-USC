@@ -9,19 +9,29 @@ using Microsoft.AspNetCore.Http;
 
 namespace Wellness_USC.Models
 {
-    public class Course
+    public enum Tipo_de_Curso
+    {
+        Deportivo,
+        Cultural
+    }
+    public class Curso
     {
         [Key]
-        public int Id { get; set; }
+        public int CursoId { get; set; }
+
         [Column(TypeName = "nvarchar(50)")]
+        [Required]
+        [DisplayName("Nombre del Curso")]
         public string Name { get; set; }
-        public string Type { get; set; }
+
+        [Required]
+        [DisplayName("Tipo de Curso")]
+        public Tipo_de_Curso Type { get; set; }
 
         [Column(TypeName = "nvarchar(100)")]
-        [DisplayName("Nombre Imagen")]
+        [DisplayName("Nombre de Imagen")]
         public string ImageName { get; set; }
-        [NotMapped]
-        [DisplayName("Subir Imagen")]
-        public IFormFile ImageFile { get; set; }
+
+        public virtual List<Clase> Clases { get; set; }
     }
 }

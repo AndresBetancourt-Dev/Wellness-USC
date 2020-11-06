@@ -1,29 +1,62 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
+
 
 namespace Wellness_USC.Models
 {
     public class Clase
     {
         [Key]
-        public int Id_Clase { get; set; }
+        public int ClaseId { get; set; }
+        [Required]
         [Column(TypeName = "nvarchar(50)")]
-        public int cantidad { get; set; }
-        public string Type { get; set; }
-        public int CoursesId { get; set; }
+        [DisplayName("Nombre de la Clase")]
+        public string Name { get; set; }
+        [Required]
+        [DisplayName("Cantidad")]
+        [Range(1, 50,
+        ErrorMessage = "La cantidad de estudantes debe estar entre 1 y 50")]
+        public int Quantity { get; set; }
 
-        [ForeignKey("CoursesId")]
-        public virtual Course Course { get; set; }
-        public int HorarioId { get; set; }
-        [ForeignKey("HorarioId")]
-        public virtual Horario Horario { get; set; }
 
-        public int ProfesoresId { get; set; }
-        [ForeignKey("ProfesoresId")]
-        public virtual Profesores Profesores { get; set; }
+        [Required]
+        [DataType(DataType.Date), DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        [DisplayName("Fecha de Inicio")]
+        public Nullable<DateTime> StartDate { get; set; }
+
+
+        [Required]
+        [DataType(DataType.Date), DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        [DisplayName("Fecha de Finalización")]
+        public Nullable<DateTime> FinishDate { get; set; }
+
+        [Required]
+        [Range(0, 23,
+        ErrorMessage = "Las hora debe estar entre 0 y 23")]
+        [DisplayName("Hora de Inicio")]
+        public int StartHour { get; set; }
+        [Required]
+        [Range(0, 23,
+        ErrorMessage = "Las hora debe estar entre 0 y 23")]
+        [DisplayName("Hora de Fin")]
+        public int EndHour { get; set; }
+
+        public int CursoId { get; set; }
+
+        [ForeignKey("CursoId")]
+        public virtual Curso Curso { get; set; }
+
+        public int ProfesorId { get; set; }
+
+        [ForeignKey("ProfesorId")]
+        public virtual Profesor Profesor { get; set; }
+
+        public virtual List<Registro> Registros { get; set; }
     }
+
 }
+
+
