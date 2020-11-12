@@ -1,0 +1,32 @@
+
+
+.imagen {
+  width: 100%;
+  height: 150px;
+    background: url(../assets//images/register/universidad.jpeg);
+  
+  }
+
+  .info{
+
+    padding: 2em;
+    line-height: 2;
+  }
+
+  info2 {
+  
+    position: relative;
+    padding: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-size: cover;
+   
+  }
+
+  .columnas{
+
+    float: left;
+  }
