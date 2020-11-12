@@ -49,7 +49,7 @@ namespace Wellness_USC.Controllers
         public IActionResult Create()
         {
             ViewData["ClaseId"] = new SelectList(_context.Clases, "ClaseId", "Name");
-            ViewData["Id"] = new SelectList(_context.AspNetUsers, "Id", "Id");
+            ViewData["Id"] = new SelectList(_context.AspNetUsers, "Id", "FirstName");
             return View();
         }
 

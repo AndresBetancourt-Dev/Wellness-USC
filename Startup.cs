@@ -11,6 +11,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Wellness_USC.Data;
 using Wellness_USC.Models;
+using Wellness_USC.Areas.Identity.Data;
+using Microsoft.AspNetCore.Identity;
 
 namespace Wellness_USC
 {
