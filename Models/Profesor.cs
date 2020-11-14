@@ -33,6 +33,11 @@ namespace Wellness_USC.Models
         [DisplayName("Nombre de Imagen")]
         public string ImageName { get; set; }
 
+        [NotMapped]
+        [DisplayName("Subir Imagen")]
+        public IFormFile ImageFile { get; set; }
+
+
         public virtual List<Clase> Clases { get; set; }
     }
 }

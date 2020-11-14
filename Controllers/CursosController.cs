@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -12,10 +15,12 @@ namespace Wellness_USC.Controllers
     public class CursosController : Controller
     {
         private readonly ClaseDbContext _context;
+        private readonly IWebHostEnvironment _hostEnviroment;
 
-        public CursosController(ClaseDbContext context)
+        public CursosController(ClaseDbContext context, IWebHostEnvironment hostEnviroment)
         {
             _context = context;
+            this._hostEnviroment = hostEnviroment;
         }
 
         // GET: Cursoes
@@ -53,16 +58,32 @@ namespace Wellness_USC.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CursoId,Name,Type,ImageName")] Curso curso)
+        [Authorize]
+        public async Task<IActionResult> Create([Bind("CursoId,Name,Type,ImageFile")] Curso curso)
         {
+
+
             if (ModelState.IsValid)
             {
+                //Saves images into Courses Image Folder
+                string rootPath = _hostEnviroment.WebRootPath;
+                string fileName = Path.GetFileNameWithoutExtension(curso.ImageFile.FileName);
+                string extension = Path.GetExtension(curso.ImageFile.FileName);
+                fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
+                curso.ImageName = fileName;
+                string path = Path.Combine(rootPath + "/assets/images/courses/", fileName);
+                using (var fileStream = new FileStream(path, FileMode.Create))
+                {
+                    await curso.ImageFile.CopyToAsync(fileStream);
+                }
+                //Inserts Record
                 _context.Add(curso);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
             return View(curso);
         }
+
 
         // GET: Cursoes/Edit/5
         public async Task<IActionResult> Edit(int? id)
@@ -138,10 +159,19 @@ namespace Wellness_USC.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
+
             var curso = await _context.Cursos.FindAsync(id);
+            //Delete Image from root folder
+            var imagePath = Path.Combine(_hostEnviroment.WebRootPath + "/assets/images/courses/", curso.ImageName);
+            if (System.IO.File.Exists(imagePath))
+            {
+                System.IO.File.Delete(imagePath);
+            }
             _context.Cursos.Remove(curso);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
+
+
         }
 
         private bool CursoExists(int id)
