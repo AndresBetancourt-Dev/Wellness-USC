@@ -6,19 +6,23 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Wellness_USC.ViewModels;
 using Wellness_USC.Areas.Identity.Data;
+using Newtonsoft.Json;
+using Microsoft.AspNetCore.Http;
 
 namespace Wellness_USC.Controllers
 {
     public class AdminController : Controller
     {
         private readonly RoleManager<IdentityRole> _roleManager;
-        private readonly UserManager<ApplicationUser> _userManager;
+        public readonly UserManager<ApplicationUser> _userManager;
 
         public AdminController(RoleManager<IdentityRole> roleManager, UserManager<ApplicationUser> userManager)
         {
             _roleManager = roleManager;
             _userManager = userManager;
+            Console.WriteLine(_userManager);
         }
+
 
         [HttpGet]
         public IActionResult CrearRol()
@@ -106,7 +110,7 @@ namespace Wellness_USC.Controllers
                     ModelState.AddModelError("", error.Description);
                 }
             }
-            
+
             return View(model);
         }
     }
