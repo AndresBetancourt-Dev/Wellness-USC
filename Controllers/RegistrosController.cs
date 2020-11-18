@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Wellness_USC.Areas.Identity.Data;
+using static SweetAlertBlog.Enums.Enums;
 
 using Wellness_USC.Models;
 using System.Web;
@@ -15,7 +16,7 @@ using System.Security.Claims;
 
 namespace Wellness_USC.Controllers
 {
-    public class RegistrosController : Controller
+    public class RegistrosController : BaseController
     {
         private readonly ClaseDbContext _context;
         private readonly UserManager<ApplicationUser> _userManager;
@@ -88,8 +89,13 @@ namespace Wellness_USC.Controllers
             var userExists = await _context.Registros.FirstOrDefaultAsync(r => (r.ClaseId == row.ClaseId && r.Id == user.Id));
             // Console.WriteLine(await _userManager.GetUserNameAsync(ApplicationUser));
             if (userExists != null)
+
             {
-                Console.WriteLine("No Estoy nulo");
+
+                Alert("No Estoy nulo", NotificationType.error);
+
+                Console.WriteLine("aqui");
+
             }
             var rows = _context.Registros.Where(r => r.ClaseId == row.ClaseId).ToList();
 
