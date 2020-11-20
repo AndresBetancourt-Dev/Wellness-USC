@@ -11,6 +11,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Wellness_USC.Data;
 using Wellness_USC.Models;
+using Wellness_USC.Areas.Identity.Data;
+using Microsoft.AspNetCore.Identity;
 
 namespace Wellness_USC
 {
@@ -31,11 +33,21 @@ namespace Wellness_USC
             services.AddDbContext<CursoDbContext>(options => options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
             services.AddDbContext<ClaseDbContext>(options => options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
             services.AddDbContext<ProfesoresDbContext>(options => options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddHttpContextAccessor();
+
+            /*services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(1);
+            });*/
+            // services.AddMvc();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+
+            // app.UseSession();
+            //app.UseMvc();
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

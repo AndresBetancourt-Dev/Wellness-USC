@@ -7,6 +7,8 @@
     <title>@ViewData["Title"] - Wellness_USC</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    <link href="/sweetAlert/sweetalert.css" rel="stylesheet" />
+    <script src="/sweetAlert/sweetalert.min.js"></script>
 </head>
 
 <body class="app-body">
@@ -17,7 +19,7 @@
                     <img src="~/assets/images/home/bienestar_universitario-logo.png" />
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse">
@@ -26,10 +28,16 @@
                             <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Courses">Cursos</a>
+                            <a class="nav-link" asp-area="" asp-controller="Cursos">Cursos</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            <a class="nav-link" asp-area="" asp-controller="Profesores">Profesores</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Salud">Salud</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Gimnasio">Gimnasio</a>
                         </li>
                     </ul>
                     <partial name="_LoginPartial" />

@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -12,10 +14,12 @@ namespace Wellness_USC.Controllers
     public class ProfesoresController : Controller
     {
         private readonly ClaseDbContext _context;
+        private readonly IWebHostEnvironment _hostEnviroment;
 
-        public ProfesoresController(ClaseDbContext context)
+        public ProfesoresController(ClaseDbContext context, IWebHostEnvironment hostEnviroment)
         {
             _context = context;
+            this._hostEnviroment = hostEnviroment;
         }
 
         // GET: Profesors
@@ -53,10 +57,21 @@ namespace Wellness_USC.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ProfesorId,FirstName,LastName,FullName,ImageName")] Profesor profesor)
+        public async Task<IActionResult> Create([Bind("ProfesorId,FirstName,LastName,FullName,ImageFile")] Profesor profesor)
         {
             if (ModelState.IsValid)
             {
+                string rootPath = _hostEnviroment.WebRootPath;
+                string fileName = Path.GetFileNameWithoutExtension(profesor.ImageFile.FileName);
+                string extension = Path.GetExtension(profesor.ImageFile.FileName);
+                fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
+                profesor.ImageName = fileName;
+                string path = Path.Combine(rootPath + "/assets/images/profesores/", fileName);
+                using (var fileStream = new FileStream(path, FileMode.Create))
+                {
+                    await profesor.ImageFile.CopyToAsync(fileStream);
+                }
+
                 _context.Add(profesor);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -139,6 +154,11 @@ namespace Wellness_USC.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var profesor = await _context.Profesores.FindAsync(id);
+            var imagePath = Path.Combine(_hostEnviroment.WebRootPath + "/assets/images/profesores/", profesor.ImageName);
+            if (System.IO.File.Exists(imagePath))
+            {
+                System.IO.File.Delete(imagePath);
+            }
             _context.Profesores.Remove(profesor);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));

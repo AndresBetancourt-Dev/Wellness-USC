@@ -2,20 +2,33 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Wellness_USC.Areas.Identity.Data;
+using static SweetAlertBlog.Enums.Enums;
+
 using Wellness_USC.Models;
+using System.Web;
+using Microsoft.AspNetCore.Http;
+using System.Security.Claims;
 
 namespace Wellness_USC.Controllers
 {
-    public class RegistrosController : Controller
+    public class RegistrosController : BaseController
     {
         private readonly ClaseDbContext _context;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public RegistrosController(ClaseDbContext context)
+        private readonly IHttpContextAccessor _httpContextAccessor;
+
+        public RegistrosController(ClaseDbContext context, UserManager<ApplicationUser> userManager, IHttpContextAccessor httpContextAccessor)
         {
             _context = context;
+            _userManager = userManager;
+            _httpContextAccessor = httpContextAccessor;
+
         }
 
         // GET: Registroes
@@ -49,7 +62,8 @@ namespace Wellness_USC.Controllers
         public IActionResult Create()
         {
             ViewData["ClaseId"] = new SelectList(_context.Clases, "ClaseId", "Name");
-            ViewData["Id"] = new SelectList(_context.AspNetUsers, "Id", "Id");
+            ViewData["Id"] = new SelectList(_context.AspNetUsers, "Id", "FirstName");
+
             return View();
         }
 
@@ -60,20 +74,41 @@ namespace Wellness_USC.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("RegistroId,Id,ClaseId")] Registro registro)
         {
+            var user = await _userManager.GetUserAsync(_httpContextAccessor.HttpContext.User);
+
+            //Console.WriteLine(_httpContextAccessor.HttpContext.User);
+            Console.WriteLine(user.Id);
             Console.WriteLine(registro.ClaseId);
             var row = await _context.Clases.FirstOrDefaultAsync(clase => clase.ClaseId == registro.ClaseId);
-            Console.WriteLine(row.Quantity);
+            Console.WriteLine(row);
+
+            var userExists = await _context.Registros.FirstOrDefaultAsync(r => (r.ClaseId == row.ClaseId && r.Id == user.Id));
+            // Console.WriteLine(await _userManager.GetUserNameAsync(ApplicationUser));
+            if (userExists != null)
+
+            {
+
+                Alert("No Estoy nulo", NotificationType.error);
+
+                Console.WriteLine("aqui");
+
+            }
 
             var rows = _context.Registros.Where(r => r.ClaseId == row.ClaseId).ToList();
 
-            Console.WriteLine(rows.Count);
 
             if (rows.Count >= row.Quantity)
             {
                 Console.WriteLine("Maximo Excedido");
+                // Alert("Maximo Excedido", NotificationType.error);
                 return RedirectToAction(nameof(Index));
             }
+            else
+            {
+                Alert("Felicitaciones", NotificationType.success);
 
+                Console.WriteLine("si");
+            }
             if (ModelState.IsValid)
             {
                 _context.Add(registro);

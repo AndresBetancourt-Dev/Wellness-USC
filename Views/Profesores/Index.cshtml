@@ -1,6 +1,7 @@
 ﻿@model IEnumerable<Wellness_USC.Models.Profesor>
 
 @{
+
     ViewData["Title"] = "Index";
 }
 
@@ -9,45 +10,22 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.FirstName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.LastName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FullName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ImageName)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.FirstName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LastName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FullName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ImageName)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ProfesorId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ProfesorId">Details</a> |
+<div class="container">
+    <div class="row">
+        @foreach (var item in Model)
+
+        {
+            <div class="col-sm-6">
+                <div class="profesor">
+                    <div class="profesor-image">
+                        <img src="@("~/assets/images/profesores/"+item.ImageName)" alt="">
+                    </div>
+                    <div class="profesor-name">@Html.DisplayFor(modelItem => item.FullName)</div>
+                </div>
+            </div>
+            <a asp-action="Edit" asp-route-id="@item.ProfesorId">Edit</a> |
+            <a asp-action="Details" asp-route-id="@item.ProfesorId">Details</a> |
                 <a asp-action="Delete" asp-route-id="@item.ProfesorId">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+                }
+        </div>
+    </div>
