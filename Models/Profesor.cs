@@ -28,7 +28,6 @@ namespace Wellness_USC.Models
         [DisplayName("Nombre Completo")]
         public string FullName { get; set; }
 
-        [Required]
         [Column(TypeName = "nvarchar(100)")]
         [DisplayName("Nombre de Imagen")]
         public string ImageName { get; set; }

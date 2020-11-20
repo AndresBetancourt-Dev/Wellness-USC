@@ -71,6 +71,7 @@ namespace Wellness_USC.Controllers
                 {
                     await profesor.ImageFile.CopyToAsync(fileStream);
                 }
+
                 _context.Add(profesor);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
