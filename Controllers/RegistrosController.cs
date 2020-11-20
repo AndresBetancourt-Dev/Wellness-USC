@@ -23,10 +23,6 @@ namespace Wellness_USC.Controllers
 
         private readonly IHttpContextAccessor _httpContextAccessor;
 
-
-
-
-
         public RegistrosController(ClaseDbContext context, UserManager<ApplicationUser> userManager, IHttpContextAccessor httpContextAccessor)
         {
             _context = context;
@@ -97,15 +93,22 @@ namespace Wellness_USC.Controllers
                 Console.WriteLine("aqui");
 
             }
+
             var rows = _context.Registros.Where(r => r.ClaseId == row.ClaseId).ToList();
 
 
             if (rows.Count >= row.Quantity)
             {
                 Console.WriteLine("Maximo Excedido");
+                // Alert("Maximo Excedido", NotificationType.error);
                 return RedirectToAction(nameof(Index));
             }
+            else
+            {
+                Alert("Felicitaciones", NotificationType.success);
 
+                Console.WriteLine("si");
+            }
             if (ModelState.IsValid)
             {
                 _context.Add(registro);

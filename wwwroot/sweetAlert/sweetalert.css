@@ -4,7 +4,7 @@ body.stop-scrolling {
 }
 
 .sweet-overlay {
-  background-color: black;
+  background-color: Gray;
   /* IE8 */
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=40)";
   /* IE8 */
@@ -19,7 +19,7 @@ body.stop-scrolling {
 }
 
 .sweet-alert {
-  background-color: black;
+  background-color: Gray;
   font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   width: 478px;
   padding: 17px;
@@ -355,7 +355,7 @@ body.stop-scrolling {
   position: absolute;
   width: 60px;
   height: 120px;
-  background: black;
+  background: Gray;
   -webkit-transform: rotate(45deg);
   transform: rotate(45deg);
 }
@@ -395,7 +395,7 @@ body.stop-scrolling {
 .sweet-alert .sa-icon.sa-success .sa-fix {
   width: 5px;
   height: 90px;
-  background-color: black;
+  background-color: Gray;
   position: absolute;
   left: 28px;
   top: 8px;
