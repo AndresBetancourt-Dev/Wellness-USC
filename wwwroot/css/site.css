@@ -1,5 +1,9 @@
 ﻿@import "./fonts.css";
 
+:root {
+  --usc-blue: rgb(0, 63, 135);
+}
+
 .navbar {
   position: fixed;
   z-index: 100;

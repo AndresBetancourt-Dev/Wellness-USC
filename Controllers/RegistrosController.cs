@@ -88,10 +88,11 @@ namespace Wellness_USC.Controllers
 
             {
 
-                Alert("No Estoy nulo", NotificationType.error);
+                Alert("Usted ya se ha registrado en este curso", NotificationType.error);
 
-                Console.WriteLine("aqui");
+                Console.WriteLine("aqui valide");
 
+                return RedirectToAction(nameof(Index));
             }
 
             var rows = _context.Registros.Where(r => r.ClaseId == row.ClaseId).ToList();
@@ -105,7 +106,7 @@ namespace Wellness_USC.Controllers
             }
             else
             {
-                Alert("Felicitaciones", NotificationType.success);
+                Alert("Felicitaciones, Te has registrado exitosamente en esta Clase", NotificationType.success);
 
                 Console.WriteLine("si");
             }
@@ -113,6 +114,7 @@ namespace Wellness_USC.Controllers
             {
                 _context.Add(registro);
                 await _context.SaveChangesAsync();
+                Console.WriteLine("Aqui guarde");
                 return RedirectToAction(nameof(Index));
             }
             ViewData["ClaseId"] = new SelectList(_context.Clases, "ClaseId", "Name", registro.ClaseId);

@@ -1,2 +1,10 @@
-.Profesores {
+.profesor {
+  display: flex;
+  align-items: center;
+}
+
+.profesor-image,
+.profesor-image img {
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
 }
