@@ -2,17 +2,28 @@
 
 :root {
   --usc-blue: rgb(0, 63, 135);
+  --usc-gradient: linear-gradient(
+    to bottom,
+    rgb(0, 63, 135),
+    rgb(18, 69, 131),
+    rgb(1, 47, 100)
+  );
+  --usc-secondary-blue: rgb(1, 47, 100);
+  --default-box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+  --max-box-shadow: 10px 10px 40px rgba(0, 0, 0, 0.5);
 }
 
 .navbar {
-  position: fixed;
-  z-index: 100;
+  background: var(--usc-gradient) !important;
+  box-shadow: var(--default-box-shadow) !important;
 }
 
 a.navbar-brand {
   white-space: normal;
   text-align: center;
   word-break: break-all;
+  width: 150px;
+  height: 150px;
   max-width: 150px;
   max-height: 150px;
 }
@@ -37,23 +48,28 @@ a.navbar-brand img {
 html {
   font-size: 14px;
 }
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
 
 .app-body {
-  background-color: black;
-  color: white;
+  background-color: white;
+  color: #003f87;
   font-family: "Neometric";
   font-weight: 600;
   font-style: normal;
   font-display: swap;
 }
 
-.navbar {
-  background-color: black;
+button.navbar-toggler {
+  color: white;
+  background-color: white;
+}
+
+.navbar-toggler:focus,
+.navbar-toggler:hover {
+  outline: none !important;
+}
+
+.navbar-toggler-icon {
+  color: white;
 }
 
 .box-shadow {
@@ -82,4 +98,31 @@ body {
   width: 100%;
   white-space: nowrap;
   line-height: 60px; /* Vertically center the text there */
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .nav-link {
+    text-align: center;
+    background: var(--usc-secondary-blue);
+  }
+}
+
+@media screen and (max-width: 600px) {
+  a.navbar-brand {
+    max-width: 100px;
+    max-height: 100px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  a.navbar-brand {
+    max-width: 50px;
+    max-height: 50px;
+  }
 }
