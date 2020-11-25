@@ -2,8 +2,10 @@
 
 @{
 
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Profesores";
 }
+
+<link rel="stylesheet" href="~/css/profesores.css" />
 
 <h1>Index</h1>
 
@@ -13,19 +15,21 @@
 <div class="container">
     <div class="row">
         @foreach (var item in Model)
-
         {
             <div class="col-sm-6">
                 <div class="profesor">
                     <div class="profesor-image">
-                        <img src="@("~/assets/images/profesores/"+item.ImageName)" alt="">
+                        <img src="@("~/assets/images/profesores/"+item.ImageName)" asp-append-version="true" alt=""
+                            width="100px" height="100px">
                     </div>
                     <div class="profesor-name">@Html.DisplayFor(modelItem => item.FullName)</div>
                 </div>
+                <!--
+                                                            <a asp-action="Edit" asp-route-id="@item.ProfesorId">Edit</a> |
+                                                            <a asp-action="Details" asp-route-id="@item.ProfesorId">Details</a> |
+                                                            <a asp-action="Delete" asp-route-id="@item.ProfesorId">Delete</a>-->
             </div>
-            <a asp-action="Edit" asp-route-id="@item.ProfesorId">Edit</a> 
-            <a asp-action="Details" asp-route-id="@item.ProfesorId">Details</a> 
-                <a asp-action="Delete" asp-route-id="@item.ProfesorId">Delete</a>
-                }
-        </div>
+
+        }
     </div>
+</div>
