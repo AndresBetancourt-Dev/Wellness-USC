@@ -29,7 +29,7 @@
         @if(Model.Users.Any()){
             @foreach (var user in Model.Users)
             {
-                <h5>@user</h5>
+                <h5 class="card-title">@user</h5>
             }
         }else{
             <h4>No hay usuarios en este rol</h4>

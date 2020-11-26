@@ -48,6 +48,7 @@ namespace Wellness_USC.Controllers
         }
 
         // GET: Cursoes/Create
+        [Authorize]
         public IActionResult Create()
         {
             return View();

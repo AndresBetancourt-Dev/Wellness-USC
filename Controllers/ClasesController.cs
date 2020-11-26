@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
 using Wellness_USC.Models;
 
 namespace Wellness_USC.Controllers
@@ -46,6 +48,7 @@ namespace Wellness_USC.Controllers
         }
 
         // GET: Clases/Create
+        [Authorize(Roles = "administrador")]
         public IActionResult Create()
         {
             ViewData["CursoId"] = new SelectList(_context.Cursos, "CursoId", "Name");
@@ -58,6 +61,7 @@ namespace Wellness_USC.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "administrador")]
         public async Task<IActionResult> Create([Bind("ClaseId,Name,Quantity,StartDate,FinishDate,StartHour,EndHour,CursoId,ProfesorId")] Clase clase)
         {
             if (ModelState.IsValid)
@@ -72,6 +76,7 @@ namespace Wellness_USC.Controllers
         }
 
         // GET: Clases/Edit/5
+        [Authorize(Roles = "administrador")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -94,6 +99,7 @@ namespace Wellness_USC.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "administrador")]
         public async Task<IActionResult> Edit(int id, [Bind("ClaseId,Name,Quantity,StartDate,FinishDate,StartHour,EndHour,CursoId,ProfesorId")] Clase clase)
         {
             if (id != clase.ClaseId)
@@ -127,6 +133,7 @@ namespace Wellness_USC.Controllers
         }
 
         // GET: Clases/Delete/5
+        [Authorize(Roles = "administrador")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -149,6 +156,7 @@ namespace Wellness_USC.Controllers
         // POST: Clases/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "administrador")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var clase = await _context.Clases.FindAsync(id);

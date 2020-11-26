@@ -3,16 +3,25 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Wellness_USC.ViewModels;
 using Wellness_USC.Areas.Identity.Data;
-using Newtonsoft.Json;
-using Microsoft.AspNetCore.Http;
+using static SweetAlertBlog.Enums.Enums;
+
 
 namespace Wellness_USC.Controllers
 {
-    public class AdminController : Controller
+    [Authorize(Roles = "administrador")]
+    public class AdminController : BaseController
     {
+
+
+        public IActionResult Index()
+        {
+            return View();
+        }
         private readonly RoleManager<IdentityRole> _roleManager;
         public readonly UserManager<ApplicationUser> _userManager;
 
@@ -20,7 +29,6 @@ namespace Wellness_USC.Controllers
         {
             _roleManager = roleManager;
             _userManager = userManager;
-            Console.WriteLine(_userManager);
         }
 
 
@@ -65,7 +73,8 @@ namespace Wellness_USC.Controllers
             var role = await _roleManager.FindByIdAsync(id);
             if (role == null)
             {
-                ViewBag.ErrorMessage = "Este rol no se encuentra en el sistema";
+
+                Alert("Este rol no se encuentra en el sistema", NotificationType.error);
                 return RedirectToAction("roles", "admin");
             }
 
@@ -92,7 +101,7 @@ namespace Wellness_USC.Controllers
             var role = await _roleManager.FindByIdAsync(model.Id);
             if (role == null)
             {
-                ViewBag.ErrorMessage = "Este rol no se encuentra en el sistema";
+                Alert("Este rol no se encuentra en el sistema", NotificationType.error);
                 return RedirectToAction("roles", "admin");
             }
             else
@@ -113,5 +122,77 @@ namespace Wellness_USC.Controllers
 
             return View(model);
         }
+
+        [HttpGet]
+        public async Task<IActionResult> EditarRolesUsuarios(string id)
+        {
+            var role = await _roleManager.FindByIdAsync(id);
+            if (role == null)
+            {
+                Alert("Este rol no se encuentra en el sistema", NotificationType.error);
+                return RedirectToAction("roles", "admin");
+            }
+            ViewBag.id = role.Id;
+            var model = new List<UserRolViewModel>();
+            foreach (var user in _userManager.Users)
+            {
+                var userRolViewModel = new UserRolViewModel
+                {
+                    UserId = user.Id,
+                    Username = user.UserName
+                };
+                if (await _userManager.IsInRoleAsync(user, role.Name))
+                {
+                    userRolViewModel.isSelected = true;
+                }
+                else
+                {
+                    userRolViewModel.isSelected = false;
+                }
+                model.Add(userRolViewModel);
+            }
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> EditarRolesUsuarios(List<UserRolViewModel> model, string id)
+        {
+            var role = await _roleManager.FindByIdAsync(id);
+            if (role == null)
+            {
+                Alert("Este rol no se encuentra en el sistema", NotificationType.error);
+                return RedirectToAction("roles", "admin");
+            }
+            for (int i = 0; i < model.Count; i++)
+            {
+                var user = await _userManager.FindByIdAsync(model[i].UserId);
+                IdentityResult result = null;
+                if (model[i].isSelected && !(await _userManager.IsInRoleAsync(user, role.Name)))
+                {
+                    result = await _userManager.AddToRoleAsync(user, role.Name);
+                }
+                else if (!model[i].isSelected && await _userManager.IsInRoleAsync(user, role.Name))
+                {
+                    result = await _userManager.RemoveFromRoleAsync(user, role.Name);
+                }
+                else
+                {
+                    continue;
+                }
+                if (result.Succeeded)
+                {
+                    if (i < (model.Count - 1))
+                    {
+                        continue;
+                    }
+                    else
+                    {
+                        return RedirectToAction("EditarRol", new { id = id });
+                    }
+                }
+            }
+            return RedirectToAction("EditarRol", new { id = id });
+        }
+
     }
 }
