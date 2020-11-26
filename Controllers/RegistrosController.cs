@@ -13,6 +13,7 @@ using Wellness_USC.Models;
 using System.Web;
 using Microsoft.AspNetCore.Http;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Wellness_USC.Controllers
 {
@@ -66,11 +67,46 @@ namespace Wellness_USC.Controllers
 
             return View();
         }
+        public async Task<IActionResult> RegistroEnCurso(int? id)
+        {
+            var user = await _userManager.GetUserAsync(_httpContextAccessor.HttpContext.User);
+
+            var userExists = await _context.Registros.FirstOrDefaultAsync(r => (r.Id == user.Id));
+            if (userExists != null)
+            {
+
+                return NotFound();
+            }
+
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var Clase = await _context.Clases.FindAsync(id);
+            if (Clase == null)
+            {
+                return NotFound();
+            }
+            ViewData["Id"] = user.Id;
+            ViewData["LastName"] = user.LastName;
+            ViewData["FirstName"] = user.FirstName;
+
+            return View(Clase);
+        }
+        [HttpPost]
+        /*public async Task<IActionResult> RegistroEnCurso(([("Id,ClaseId")] Registro registro)
+        {
+
+            Console.Write(ViewData["Id"]);
+            return RedirectToAction(nameof(Index));
+        }*/
 
         // POST: Registroes/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [Authorize]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("RegistroId,Id,ClaseId")] Registro registro)
         {

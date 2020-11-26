@@ -1,0 +1,25 @@
+@model Wellness_USC.Models.Clase
+
+<h1>hola</h1>
+
+
+<dt class="col-sm-2">
+    @Html.DisplayFor(model => model.Name)
+</dt>
+
+<h2>@ViewData["Id"]</h2>
+<h2>@ViewData["LastName"]</h2>
+<h2>@ViewData["FirstName"]</h2>
+
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="RegistroEnCurso">
+
+
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
