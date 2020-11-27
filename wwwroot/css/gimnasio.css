@@ -336,6 +336,23 @@ a:focus {
   z-index: 1;
 }
 
+.gym-image{
+  width: 100%;
+  height: 100%;
+}
+
+.gym-image img{
+  width: 100%;
+  height: 100%;
+}
+
+@media screen and (min-width:768px){
+  .gym-image img{
+    width: 100%;
+    height: 60%;
+  }
+}
+
 #column-left .pogoSlider,
 #column-right .pogoSlider,
 #content .pogoSlider {
@@ -611,7 +628,7 @@ a.navbar-brand {
   position: relative;
   content: "";
   display: block;
-  background: #00cc99;
+  background: var(--usc-blue);
   left: -35px;
   transform: skew(30deg);
 }
@@ -728,7 +745,7 @@ button#sidebarCollapse {
 }
 
 .lbox-details a.btn:hover {
-  background: #00cc99;
+  background: var(--usc-blue);
 }
 
 .pogoSlider-nav-btn {
@@ -736,7 +753,7 @@ button#sidebarCollapse {
 }
 
 .pogoSlider-nav-btn--selected {
-  background: #00cc99 !important;
+  background: var(--usc-blue) !important;
 }
 
 .pogoSlider--navBottom .pogoSlider-nav {
@@ -791,7 +808,7 @@ button#sidebarCollapse {
 }
 
 .start_exchange_bt i {
-  color: #00cc99;
+  color: var(--usc-blue);
 }
 
 .contact_bt {
@@ -996,7 +1013,7 @@ button#sidebarCollapse {
   left: 0;
   right: 0;
   bottom: 0;
-  background: #0c9;
+  background: var(--usc-blue);
   border-radius: 100%;
   -webkit-transform: scale(0);
   transform: scale(0);
@@ -1179,7 +1196,7 @@ figure.effect-service:hover {
 }
 
 .service_pro_section {
-  background: #0c9;
+  background: var(--usc-blue);
   border-left: solid #fff 15px;
   border-right: solid #fff 15px;
   padding: 80px;
@@ -1761,7 +1778,7 @@ ul.social_icon li {
   position: absolute;
   top: 0;
   left: 0;
-  background: rgba(5, 205, 155, 0.85);
+  background: var(--usc-blue);
   width: 100%;
   height: 100%;
   display: flex;
@@ -1814,7 +1831,7 @@ ul.social_icon li {
 }
 
 .readmore_bt i {
-  color: #00cc99;
+  color: var(--usc-blue);
   font-size: 25px;
   position: relative;
   top: 4px;
@@ -2065,7 +2082,7 @@ ul.bottom_menu li {
   padding: 0;
   font-size: 20px;
   font-weight: 300;
-  border-bottom: solid #0c9 2px;
+  border-bottom: solid var(--usc-blue)2px;
 }
 
 .field textarea {
@@ -2078,7 +2095,7 @@ ul.bottom_menu li {
   padding: 0;
   font-size: 20px;
   font-weight: 300;
-  border-bottom: solid #0c9 2px;
+  border-bottom: solid var(--usc-blue) 2px;
 }
 
 .contact_form_inner button {
@@ -2090,7 +2107,7 @@ ul.bottom_menu li {
   line-height: 62px;
   cursor: pointer;
   transition: ease all 0.5s;
-  background: #0c9;
+  background: var(--usc-blue);
   text-transform: none;
 }
 
@@ -2141,7 +2158,7 @@ ul.bottom_menu li {
 }
 
 #sidebar ul li a:hover {
-  color: #00cc99;
+  color: var(--usc-blue);
   background: #fff;
 }
 
