@@ -48,6 +48,7 @@ namespace Wellness_USC.Controllers
         }
 
         // GET: Cursoes/Create
+        [Authorize(Roles = "administrador,profesor")]
         public IActionResult Create()
         {
             return View();
@@ -58,7 +59,7 @@ namespace Wellness_USC.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize]
+        [Authorize(Roles = "administrador,profesor")]
         public async Task<IActionResult> Create([Bind("CursoId,Name,Type,ImageFile")] Curso curso)
         {
 
@@ -85,6 +86,7 @@ namespace Wellness_USC.Controllers
 
 
         // GET: Cursoes/Edit/5
+        [Authorize(Roles = "administrador,profesor")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -105,6 +107,7 @@ namespace Wellness_USC.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "administrador,profesor")]
         public async Task<IActionResult> Edit(int id, [Bind("CursoId,Name,Type,ImageName")] Curso curso)
         {
             if (id != curso.CursoId)
@@ -136,6 +139,7 @@ namespace Wellness_USC.Controllers
         }
 
         // GET: Cursoes/Delete/5
+        [Authorize(Roles = "administrador,profesor")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -156,6 +160,7 @@ namespace Wellness_USC.Controllers
         // POST: Cursoes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "administrador,profesor")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
 

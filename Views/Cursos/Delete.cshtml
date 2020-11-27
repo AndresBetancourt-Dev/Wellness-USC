@@ -1,46 +1,39 @@
 ﻿@model Wellness_USC.Models.Curso
 
 @{
-    ViewData["Title"] = "Delete";
+
+    ViewData["Title"] = "Eliminar Curso";
 }
+<div class="container mt-5">
 
-<h1>Delete</h1>
+    <h1 class="text-center">Eliminar Curso</h1>
+    <hr>
+    <h3 class="text-center">¿Estas seguro que deseas eliminar este curso?</h3>
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>Curso</h4>
     <hr />
-    <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Type)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Type)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.ImageName)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.ImageName)
-        </dd>
-        <dt class="col-sm-2">
-            Uploaded Image
-        </dt>
-        <dd class="col-sm-10">
-            <img src="@("~/assets/images/courses/"+Model.ImageName)" asp-append-version="true" width="250"
-                height="250" />
-        </dd>
-    </dl>
+    <div class="row">
+        <div class="col-12 col-md-6">
+            <img src="@("~/assets/images/courses/"+Model.ImageName)" asp-append-version="true" class="course-image"
+                width="100%" height="100%" style="border-radius: 10px;" />
+        </div>
+        <div class="col-12 col-md-6 mt-3">
+            <div>
+                <h2>@Html.DisplayNameFor(model => model.Name)</h2>
+                <h2 class="lead">@Html.DisplayFor(model => model.Name)</h2>
+            </div>
+            <div>
+                <h2>@Html.DisplayNameFor(model => model.Type)</h2>
+                <h2 class="lead">@Html.DisplayFor(model => model.Type)</h2>
+            </div>
+            <form asp-action="Delete">
+                <input type="hidden" asp-for="CursoId" />
+                <input type="submit" value="Eliminar Curso" class="btn btn-danger w-100 p-5" />
+                <a asp-action="Index">Volver a la Lista</a>
+            </form>
+        </div>
+    </div>
 
-    <form asp-action="Delete">
-        <input type="hidden" asp-for="CursoId" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
-    </form>
+
+
+
 </div>

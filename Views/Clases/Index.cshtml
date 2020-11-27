@@ -1,58 +1,77 @@
 ﻿@model IEnumerable<Wellness_USC.Models.Clase>
+@using Microsoft.AspNetCore.Identity
+@using Wellness_USC.Areas.Identity.Data
+@inject SignInManager<ApplicationUser> SignInManager
 
-@{
+@{ ViewData["Title"] = "Clases"; }
 
-    ViewData["Title"] = "Index";
+<link rel="stylesheet" href="~/css/clases.css" />
+
+<div class="container mt-5">
+    <h1>Clases</h1>
+    @if (SignInManager.IsSignedIn(User))
+    {
+        @if (User.IsInRole("administrador"))
+        {
+            <div class="create">
+                <a class="btn btn-usc" asp-action="Create">Create New</a>
+            </div>
+        }
+    }
+<div class="row">
+
+    @foreach (var item in Model)
+    {
+        <div class="col-12 col-md-4 col-lg-3">
+            <div class="clase ">
+                <img src="@("~/assets/images/courses/"+item.Curso.ImageName)" class="clase-image" asp-append-version="true"/>
+                <div class="clase-content">
+                    <h2 class="clase-name">
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </h2>
+                    <div class="clase-profesor">
+                        <div class="clase-profesor-image">
+                            <img src="@("~/assets/images/profesores/"+item.Profesor.ImageName)"  asp-append-version="true"/>
+                        </div>
+                        <div class="clase-profesor-name">
+                            @Html.DisplayFor(modelItem => item.Profesor.FullName)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--
+<tr>
+    <td>
+        
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Quantity)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.StartDate)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.FinishDate)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.StartHour)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.EndHour)
+    </td>
+    <td>
+        
+    </td>
+    
+    <td>
+        <a asp-action="Edit" asp-route-id="@item.ClaseId">Edit</a> |
+        <a asp-action="Details" asp-route-id="@item.ClaseId">Details</a> |
+        <a asp-action="Delete" asp-route-id="@item.ClaseId">Delete</a>
+    </td>
+</tr>
+    -->
+    
 }
-
-<h1>Index</h1>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-
-<div class="container">
-
 </div>
-
-@foreach (var item in Model)
-
-
-
-{
-
-
-
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Quantity)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.StartDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FinishDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.StartHour)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EndHour)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Curso.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Profesor.FirstName)
-        </td>
-        <td>
-            <a asp-action="Edit" asp-route-id="@item.ClaseId">Edit</a> |
-            <a asp-action="Details" asp-route-id="@item.ClaseId">Details</a> |
-            <a asp-action="Delete" asp-route-id="@item.ClaseId">Delete</a>
-        </td>
-    </tr>
-
-}
+</div>

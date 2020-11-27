@@ -4,10 +4,19 @@
     ViewData["Title"] = "Roles";
 }
 
-<h1>Roles</h1>
+<div class="container mt-5">
+
+<h1 class="text-center">Roles</h1>
+
+
 
 @if (Model.Any())
 {
+    <div class="create">
+<a class="btn btn-usc" asp-controller="Admin" asp-action="CrearRol">
+        Crea un Rol
+    </a>
+</div>
     @foreach (var role in Model)
     {
         <div class="card mb-3">
@@ -27,9 +36,11 @@
 else
 {
     <p>No hay roles</p>
-    <a class="btn btn-dark" asp-controller="Admin" asp-action="CrearRol">
+    <a class="btn btn-usc" asp-controller="Admin" asp-action="CrearRol">
         Crea un Rol
     </a>
 }
 
 
+
+</div>

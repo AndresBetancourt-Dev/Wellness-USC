@@ -14,8 +14,8 @@
 }
 
 .navbar {
-  background: var(--usc-gradient) !important;
-  box-shadow: var(--default-box-shadow) !important;
+  background: var(--usc-gradient);
+  box-shadow: var(--default-box-shadow);
 }
 
 a.navbar-brand {
@@ -41,6 +41,7 @@ a.navbar-brand img {
 .nav-link {
   color: white;
   font-weight: bold;
+  transition: 0.5s ease-out;
 }
 
 /* Sticky footer styles
@@ -56,6 +57,19 @@ html {
   font-weight: 600;
   font-style: normal;
   font-display: swap;
+}
+
+.btn-usc {
+  background: var(--usc-blue);
+  color: white;
+  transition: 0.5s ease-out;
+}
+
+.btn-usc:hover,
+.nav-link:hover {
+  background: var(--usc-blue);
+  color: white;
+  transform: scale(1.1, 1.1);
 }
 
 button.navbar-toggler {
@@ -88,6 +102,8 @@ html {
   min-height: 100%;
 }
 
+
+
 body {
   /* Margin bottom by footer height */
   margin-bottom: 60px;
@@ -98,6 +114,46 @@ body {
   width: 100%;
   white-space: nowrap;
   line-height: 60px; /* Vertically center the text there */
+}
+
+.create {
+  width: 100%;
+  background: var(--usc-blue);
+  border-radius: 10px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin: 20px 0;
+}
+
+.create a {
+  color: white;
+  background: var(--usc-blue);
+  box-shadow: var(--max-box-shadow);
+  margin: 10px;
+  transition: 0.5s ease-out;
+}
+
+.create a:hover {
+  color: white;
+  transform: scale(1.1, 1.1);
+}
+
+.crud {
+  display: flex;
+  flex-direction: column;
+  min-width: 100px;
+  height: 100px;
+  max-width: 250px;
+}
+
+.crud a {
+  color: white;
+  background: var(--usc-blue);
+  box-shadow: var(--max-box-shadow);
+  margin: 10px;
+  transition: 0.5s ease-out;
 }
 
 @media (min-width: 768px) {
@@ -122,7 +178,7 @@ body {
 
 @media screen and (max-width: 400px) {
   a.navbar-brand {
-    max-width: 50px;
-    max-height: 50px;
+    max-width: 70px;
+    max-height: 70px;
   }
 }
