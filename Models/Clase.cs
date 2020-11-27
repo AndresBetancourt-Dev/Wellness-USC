@@ -47,11 +47,13 @@ namespace Wellness_USC.Models
         public int CursoId { get; set; }
 
         [ForeignKey("CursoId")]
+        [DisplayName("Curso")]
         public virtual Curso Curso { get; set; }
 
         public int ProfesorId { get; set; }
 
         [ForeignKey("ProfesorId")]
+        [DisplayName("Profesor")]
         public virtual Profesor Profesor { get; set; }
 
         public virtual List<Registro> Registros { get; set; }

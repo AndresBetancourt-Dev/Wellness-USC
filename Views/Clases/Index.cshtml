@@ -8,17 +8,17 @@
 <link rel="stylesheet" href="~/css/clases.css" />
 
 <div class="container mt-5">
-    <h1>Clases</h1>
+    <h1 class="text-center">Clases</h1>
     @if (SignInManager.IsSignedIn(User))
     {
-        @if (User.IsInRole("administrador"))
+        @if (User.IsInRole("administrador") || User.IsInRole("profesor"))
         {
             <div class="create">
-                <a class="btn btn-usc" asp-action="Create">Create New</a>
+                <a class="btn btn-usc" asp-action="Create">Crear Clase</a>
             </div>
         }
     }
-<div class="row">
+<div class="row pt-5">
 
     @foreach (var item in Model)
     {
@@ -39,38 +39,21 @@
                     </div>
                 </div>
             </div>
+            <a asp-controller="Registros" asp-action="Registrar" asp-route-id="@item.ClaseId" class="btn btn-usc w-100 mt-2">Inscribirse</a>
+            @if (SignInManager.IsSignedIn(User))
+    {
+        @if (User.IsInRole("administrador") || User.IsInRole("profesor"))
+        {
+            <div class="w-100 d-flex justify-content-between mt-3">
+        <a asp-action="Edit" asp-route-id="@item.ClaseId" class="btn btn-usc">Editar</a> 
+        <a asp-action="Details" asp-route-id="@item.ClaseId" class="btn btn-usc">Detalles</a> 
+        <a asp-action="Delete" asp-route-id="@item.ClaseId" class="btn btn-danger">Eliminar</a>
         </div>
-        <!--
-<tr>
-    <td>
-        
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Quantity)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.StartDate)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.FinishDate)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.StartHour)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.EndHour)
-    </td>
-    <td>
-        
-    </td>
-    
-    <td>
-        <a asp-action="Edit" asp-route-id="@item.ClaseId">Edit</a> |
-        <a asp-action="Details" asp-route-id="@item.ClaseId">Details</a> |
-        <a asp-action="Delete" asp-route-id="@item.ClaseId">Delete</a>
-    </td>
-</tr>
-    -->
+        }
+    }
+            
+            
+        </div>
     
 }
 </div>

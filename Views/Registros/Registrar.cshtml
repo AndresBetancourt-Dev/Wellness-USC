@@ -12,35 +12,14 @@
         a punto de apuntarte
         a la clase llamada "@Html.DisplayFor(model => model.Clase)"
     </p>
-    <p>¿Deseas Apuntarte?</p>
+    <p class="text-center">¿Deseas Apuntarte?</p>
     <form method="post">
-        <div asp-validation-summary="All" class="text-danger"></div>
-        <div class="form-group">
-            <label asp-for="Name"></label>
-            <input asp-for="Name" class="form-control" />
-            <span asp-validation-for="Name" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="Surname"></label>
-            <input asp-for="Surname" class="form-control" />
-            <span asp-validation-for="Surname" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="Clase"></label>
-            <input asp-for="Clase" class="form-control" />
-            <span asp-validation-for="Clase" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="UserId"></label>
-            <input asp-for="UserId" class="form-control" />
-            <span asp-validation-for="UserId" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="ClaseId"></label>
-            <input asp-for="ClaseId" class="form-control" />
-            <span asp-validation-for="ClaseId" class="text-danger"></span>
-        </div>
-        <button type="submit" class="btn btn-usc">Apuntarse</button>
+        <input type="hidden" asp-for="Name" class="form-control" />
+        <input type="hidden" asp-for="Surname" class="form-control" />
+        <input type="hidden" asp-for="Clase" class="form-control" />
+        <input type="hidden" asp-for="UserId" class="form-control" />
+        <input type="hidden" asp-for="ClaseId" class="form-control" />
+        <button type="submit" class="btn btn-usc w-100">Apuntarse</button>
     </form>
-    <a asp-action="" asp-controller="Clases" class="btn btn-danger">Cancelar</a>
+    <a asp-action="" asp-controller="Clases" class="btn btn-danger w-100">Cancelar</a>
 </div>

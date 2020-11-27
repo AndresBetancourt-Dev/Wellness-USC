@@ -1,43 +1,59 @@
 ﻿@model Wellness_USC.Models.Profesor
+@using Microsoft.AspNetCore.Identity
+@using Wellness_USC.Areas.Identity.Data
+@inject SignInManager<ApplicationUser> SignInManager
 
 @{
 
     ViewData["Title"] = "Detalles Profesor";
 }
 
-<h1>Details</h1>
 
-<div>
-    <h4>Profesor</h4>
-    <hr />
-    <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.FirstName)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.FirstName)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.LastName)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.LastName)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.FullName)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.FullName)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.ImageName)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.ImageName)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.ProfesorId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+<div class="container mt-5">
+    <h1 class="text-center">Detalles Profesor</h1>
+    <div class="row">
+        <div class="col-md-6">
+            <img src="@("~/assets/images/profesores/"+Model.ImageName)" asp-append-version="true" alt="" width="100%"
+                height="100%">
+        </div>
+        <div class="col-md-6 mt-3">
+            <h4 class="text-bold text-center">Profesor</h4>
+            <hr />
+            <dl class="row">
+                <dt class="col-sm-6">
+                    @Html.DisplayNameFor(model => model.FirstName)
+                </dt>
+                <dd class="col-sm-6">
+                    @Html.DisplayFor(model => model.FirstName)
+                </dd>
+                <dt class="col-sm-6">
+                    @Html.DisplayNameFor(model => model.LastName)
+                </dt>
+                <dd class="col-sm-6">
+                    @Html.DisplayFor(model => model.LastName)
+                </dd>
+                <dt class="col-sm-6">
+                    @Html.DisplayNameFor(model => model.FullName)
+                </dt>
+                <dd class="col-sm-6">
+                    @Html.DisplayFor(model => model.FullName)
+                </dd>
+                    @if (SignInManager.IsSignedIn(User))
+    {
+@if (User.IsInRole("administrador") || User.IsInRole("profesor"))
+{
+<dd class="col-12">
+                    <a asp-action="Edit" asp-route-id="@Model.ProfesorId" class="btn btn-usc w-100">Editar</a>
+                    <a class="btn btn-danger w-100 mt-2" asp-action="Delete" asp-route-id="@Model.ProfesorId">Delete</a>
+                </dd>
+}}
+                
+            </dl>
+            <div>
+
+                <a asp-action="Index">Volver a la Lista</a>
+            </div>
+
+        </div>
+    </div>
 </div>
