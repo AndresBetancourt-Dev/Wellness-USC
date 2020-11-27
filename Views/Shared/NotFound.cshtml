@@ -1,3 +1,19 @@
-<h1>Hola!</h1>
+<link rel="stylesheet" href="~/css/error.css" />
 
-<h3>@ViewBag.ErrorMessage</h3>
+<h1>@ViewBag.ErrorMessage</h1>
+<section class="error-container">
+    <span class="four"><span class="screen-reader-text">4</span></span>
+    <span class="zero"><span class="screen-reader-text">0</span></span>
+    <span class="four"><span class="screen-reader-text">4</span></span>
+</section>
+<center>
+
+
+    <div class="link-container" align='center'>
+        <form id="logoutForm" class="center" asp-area="Identity" asp-page="/Account/Logout"
+            asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+            <button id="logout" type="submit" class="btn btn-outline-success" style="width: auto;">Vuelve al
+                inicio</button>
+        </form>
+    </div>
+</center>
