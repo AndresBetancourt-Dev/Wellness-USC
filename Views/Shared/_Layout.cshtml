@@ -30,32 +30,32 @@
                 <div class="navbar-collapse collapse">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link"  asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Clases">Clases</a>
+                            <a class="nav-link"  asp-controller="Clases" asp-action="Index">Clases</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Cursos">Cursos</a>
+                            <a class="nav-link"  asp-controller="Cursos" asp-action="Index">Cursos</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Profesores">Profesores</a>
+                            <a class="nav-link"  asp-controller="Profesores" asp-action="Index">Profesores</a>
                         </li>
                         @if (SignInManager.IsSignedIn(User))
                         {
                             @if(User.IsInRole("administrador")){
                                 <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Admin">Administración</a>
+                            <a class="nav-link" asp-action="Index" asp-controller="Admin">Administración</a>
                         </li>
                             }else{
                                 <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Salud">Salud</a>
+                            <a class="nav-link" asp-action="Index" asp-controller="Salud">Salud</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Gimnasio">Gimnasio</a>
+                            <a class="nav-link" asp-action="Index" asp-controller="Gimnasio">Gimnasio</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Centro">Centro</a>
+                            <a class="nav-link" asp-action="Index" asp-controller="Centro">Centro</a>
                         </li>
                             }
                             
@@ -63,13 +63,13 @@
                         else
                         {
                             <li class="nav-item">
-                                <a class="nav-link" asp-area="" asp-controller="Salud">Salud</a>
+                                <a class="nav-link" asp-action="Index" asp-controller="Salud">Salud</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" asp-area="" asp-controller="Gimnasio">Gimnasio</a>
+                                <a class="nav-link" asp-action="Index" asp-controller="Gimnasio">Gimnasio</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" asp-area="" asp-controller="Centro">Centro</a>
+                                <a class="nav-link" asp-action="Index" asp-controller="Centro">Centro</a>
                             </li>
                         }
                     </ul>
@@ -86,9 +86,30 @@
         </main>
     </div>
 
-    <footer class="footer text-muted">
+    <footer class="footer p-5">
         <div class="container">
-            &copy; 2020 - Wellness_USC - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            <div class="row">
+                <div class="col-12 col-md-4">
+                    <h2 class="text-center">Contacto</h2>
+                    <ul>
+                        <li>
+                            Calle 5 # 62-00
+                        </li>
+                        <li>
+                            Universidad Santiago de Cali
+                        </li>
+                        <li>
+                           Bloque 5 - Piso 3
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-12 col-md-4">
+                    
+                </div>
+                <div class="col-12 col-md-4">
+                    
+                </div>
+            </div>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
