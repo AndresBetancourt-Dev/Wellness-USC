@@ -1,11 +1,11 @@
 ﻿@page
 @model RegisterModel
 @{
-    ViewData["Title"] = "Register";
+    ViewData["Title"] = "Registro";
 }
 <link rel="stylesheet" href="~/css/register.css" />
 
-<h1>@ViewData["Title"]</h1>
+<h1 class="text-center my-5">@ViewData["Title"]</h1>
 
 <div class="row">
     <div class="col-md-8 imagen "></div>
@@ -42,7 +42,7 @@
                 <input asp-for="Input.ConfirmPassword" class="form-control" />
                 <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
             </div>
-            <button type="submit" class="btn btn-block btn-primary font-poppins">Register</button>
+            <button type="submit" class="btn btn-usc font-poppins w-100">Registro</button>
         </form>
     </div>
     <div >
