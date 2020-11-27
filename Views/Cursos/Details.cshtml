@@ -1,4 +1,7 @@
 ﻿@model Wellness_USC.Models.Curso
+@using Microsoft.AspNetCore.Identity
+@using Wellness_USC.Areas.Identity.Data
+@inject SignInManager<ApplicationUser> SignInManager
 
 @{
 
@@ -23,11 +26,15 @@
                 <h2>@Html.DisplayNameFor(model => model.Type)</h2>
                 <h2 class="lead">@Html.DisplayFor(model => model.Type)</h2>
             </div>
-
+    @if(SignInManager.IsSignedIn(User)){
+        @if(User.IsInRole("administrador") || User.IsInRole("profesor")){
             <div>
                 <a asp-action="Edit" asp-route-id="@Model.CursoId" class="btn btn-usc w-100">Editar</a>
                 <a asp-action="Delete" asp-route-id="@Model.CursoId" class="btn btn-danger w-100">Eliminar</a>
             </div>
+        }
+    }
+            
             <div>
                 <a asp-action="Index">Volver a la Lista</a>
             </div>

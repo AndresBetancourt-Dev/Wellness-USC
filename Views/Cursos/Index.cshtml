@@ -1,5 +1,7 @@
 ﻿@model IEnumerable<Wellness_USC.Models.Curso>
-
+@using Microsoft.AspNetCore.Identity
+@using Wellness_USC.Areas.Identity.Data
+@inject SignInManager<ApplicationUser> SignInManager
 @{
 
     ViewData["Title"] = "Cursos";
@@ -11,15 +13,16 @@
 
 <div class="container mt-5">
     <h1 class="text-center">Cursos</h1>
-
-    <div class="create">
-        <a class="btn" asp-action="Create">Crear Curso</a>
-    </div>
+    @if (SignInManager.IsSignedIn(User))
+    {
+        @if(User.IsInRole("administrador") || User.IsInRole("profesor")){
+ <div class="create">
+            <a class="btn" asp-action="Create">Crear Curso</a>
+        </div>
+        }
+    }
     <div class="row">
         @foreach (var item in Model)
-
-
-
         {
             <a class="col-sm-6 col-md-4 col-xl-3 course" asp-action="Details" asp-route-id="@item.CursoId">
                 <div class="course-container">

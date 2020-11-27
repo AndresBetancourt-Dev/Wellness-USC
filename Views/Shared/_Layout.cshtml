@@ -1,4 +1,9 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity
+@using Wellness_USC.Areas.Identity.Data
+
+@inject SignInManager<ApplicationUser> SignInManager
+
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -36,7 +41,14 @@
                         <li class="nav-item">
                             <a class="nav-link" asp-area="" asp-controller="Profesores">Profesores</a>
                         </li>
-                        <li class="nav-item">
+                        @if (SignInManager.IsSignedIn(User))
+                        {
+                            @if(User.IsInRole("administrador")){
+                                <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Admin">Administración</a>
+                        </li>
+                            }else{
+                                <li class="nav-item">
                             <a class="nav-link" asp-area="" asp-controller="Salud">Salud</a>
                         </li>
                         <li class="nav-item">
@@ -45,6 +57,21 @@
                         <li class="nav-item">
                             <a class="nav-link" asp-area="" asp-controller="Centro">Centro</a>
                         </li>
+                            }
+                            
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="" asp-controller="Salud">Salud</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="" asp-controller="Gimnasio">Gimnasio</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="" asp-controller="Centro">Centro</a>
+                            </li>
+                        }
                     </ul>
                     <partial name="_LoginPartial" />
                 </div>

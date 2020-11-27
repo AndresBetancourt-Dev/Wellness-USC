@@ -48,7 +48,7 @@ namespace Wellness_USC.Controllers
         }
 
         // GET: Profesors/Create
-        [Authorize(Roles = "administrador")]
+        [Authorize(Roles = "administrador,profesor")]
         public IActionResult Create()
         {
             return View();
@@ -59,7 +59,7 @@ namespace Wellness_USC.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "administrador")]
+        [Authorize(Roles = "administrador,profesor")]
         public async Task<IActionResult> Create([Bind("ProfesorId,FirstName,LastName,FullName,ImageFile")] Profesor profesor)
         {
             if (ModelState.IsValid)
@@ -83,7 +83,7 @@ namespace Wellness_USC.Controllers
         }
 
         // GET: Profesors/Edit/5
-        [Authorize(Roles = "administrador")]
+        [Authorize(Roles = "administrador,profesor")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -104,7 +104,7 @@ namespace Wellness_USC.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "administrador")]
+        [Authorize(Roles = "administrador,profesor")]
         public async Task<IActionResult> Edit(int id, [Bind("ProfesorId,FirstName,LastName,FullName,ImageName")] Profesor profesor)
         {
             if (id != profesor.ProfesorId)
@@ -136,7 +136,7 @@ namespace Wellness_USC.Controllers
         }
 
         // GET: Profesors/Delete/5
-        [Authorize(Roles = "administrador")]
+        [Authorize(Roles = "administrador,profesor")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -157,7 +157,7 @@ namespace Wellness_USC.Controllers
         // POST: Profesors/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "administrador")]
+        [Authorize(Roles = "administrador,profesor")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var profesor = await _context.Profesores.FindAsync(id);

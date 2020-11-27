@@ -41,6 +41,7 @@ a.navbar-brand img {
 .nav-link {
   color: white;
   font-weight: bold;
+  transition: 0.5s ease-out;
 }
 
 /* Sticky footer styles
@@ -64,7 +65,8 @@ html {
   transition: 0.5s ease-out;
 }
 
-.btn-usc:hover {
+.btn-usc:hover,
+.nav-link:hover {
   background: var(--usc-blue);
   color: white;
   transform: scale(1.1, 1.1);
@@ -99,6 +101,8 @@ html {
   position: relative;
   min-height: 100%;
 }
+
+
 
 body {
   /* Margin bottom by footer height */

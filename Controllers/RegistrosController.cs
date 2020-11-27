@@ -8,11 +8,14 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Wellness_USC.Areas.Identity.Data;
 using static SweetAlertBlog.Enums.Enums;
+using Microsoft.AspNetCore.Authorization;
 
 using Wellness_USC.Models;
+using Wellness_USC.ViewModels;
 using System.Web;
 using Microsoft.AspNetCore.Http;
 using System.Security.Claims;
+using System.Threading;
 
 namespace Wellness_USC.Controllers
 {
@@ -74,51 +77,101 @@ namespace Wellness_USC.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("RegistroId,Id,ClaseId")] Registro registro)
         {
+
             var user = await _userManager.GetUserAsync(_httpContextAccessor.HttpContext.User);
-
-            //Console.WriteLine(_httpContextAccessor.HttpContext.User);
-            Console.WriteLine(user.Id);
-            Console.WriteLine(registro.ClaseId);
-            var row = await _context.Clases.FirstOrDefaultAsync(clase => clase.ClaseId == registro.ClaseId);
-            Console.WriteLine(row);
-
-            var userExists = await _context.Registros.FirstOrDefaultAsync(r => (r.ClaseId == row.ClaseId && r.Id == user.Id));
-            // Console.WriteLine(await _userManager.GetUserNameAsync(ApplicationUser));
+            var userExists = await _context.Registros.FirstOrDefaultAsync(r => (r.ClaseId == registro.ClaseId && r.Id == user.Id));
             if (userExists != null)
-
             {
-
                 Alert("Usted ya se ha registrado en este curso", NotificationType.error);
-
-                Console.WriteLine("aqui valide");
-
                 return RedirectToAction(nameof(Index));
             }
+
+            var row = await _context.Clases.FirstOrDefaultAsync(clase => clase.ClaseId == registro.ClaseId);
+            var rows = _context.Registros.Where(r => r.ClaseId == row.ClaseId).ToList();
+
+
+            if (rows.Count >= row.Quantity)
+            {
+                Alert("Lo sentimos, el Curso ha Excedido la Cantidad De Estudiantes", NotificationType.error);
+                return RedirectToAction(nameof(Index));
+            }
+
+            var newRegistro = new Registro { Id = user.Id, ClaseId = registro.ClaseId };
+
+            if (ModelState.IsValid)
+            {
+                _context.Add(newRegistro);
+                await _context.SaveChangesAsync();
+                Alert("Felicitaciones, Te has registrado exitosamente en esta Clase", NotificationType.success);
+                return RedirectToAction(nameof(Index));
+            }
+
+
+            ViewData["ClaseId"] = new SelectList(_context.Clases, "ClaseId", "Name", registro.ClaseId);
+            ViewData["Id"] = new SelectList(_context.AspNetUsers, "Id", "Id", registro.Id);
+            return View(registro);
+        }
+
+        [HttpGet]
+        [Authorize]
+        public async Task<ActionResult> Registrar(int? id)
+        {
+            if (id == null)
+            {
+                Alert("Lo sentimos, Esta Clase No Existe", NotificationType.error);
+                return RedirectToAction("Index", "Clases");
+            }
+
+            var clase = await _context.Clases.FirstOrDefaultAsync(c => c.ClaseId == id);
+            if (clase == null)
+            {
+                Alert("Lo sentimos, Esta Clase No Existe", NotificationType.error);
+                Thread.Sleep(2000);
+                return RedirectToAction("Index", "Clases");
+            }
+
+            var user = await _userManager.GetUserAsync(_httpContextAccessor.HttpContext.User);
+            var registro = new RegistrosViewModel { UserId = user.Id, ClaseId = clase.ClaseId, Name = user.FirstName, Surname = user.LastName, Clase = clase.Name };
+            return View(registro);
+        }
+
+        [HttpPost]
+        [Authorize]
+        public async Task<ActionResult> Registrar(RegistrosViewModel registro)
+        {
+            var userExists = await _context.Registros.FirstOrDefaultAsync(r => (r.ClaseId == registro.ClaseId && r.Id == registro.UserId));
+            if (userExists != null)
+            {
+                Alert("Usted ya se ha registrado en este curso", NotificationType.error);
+                Thread.Sleep(2000);
+                return RedirectToAction("Index", "Clases");
+            }
+            Console.WriteLine(registro.UserId);
+            Console.WriteLine(registro.ClaseId);
+
+            var row = await _context.Clases.FirstOrDefaultAsync(clase => clase.ClaseId == registro.ClaseId);
 
             var rows = _context.Registros.Where(r => r.ClaseId == row.ClaseId).ToList();
 
 
             if (rows.Count >= row.Quantity)
             {
-                Console.WriteLine("Maximo Excedido");
-                // Alert("Maximo Excedido", NotificationType.error);
-                return RedirectToAction(nameof(Index));
+                Alert("Lo sentimos, el Curso ha Excedido la Cantidad De Estudiantes", NotificationType.error);
+                Thread.Sleep(2000);
+                return RedirectToAction("Index", "Clases");
             }
-            else
-            {
-                Alert("Felicitaciones, Te has registrado exitosamente en esta Clase", NotificationType.success);
 
-                Console.WriteLine("si");
-            }
+            var newRegistro = new Registro { Id = registro.UserId, ClaseId = registro.ClaseId };
+
             if (ModelState.IsValid)
             {
-                _context.Add(registro);
+                _context.Add(newRegistro);
                 await _context.SaveChangesAsync();
-                Console.WriteLine("Aqui guarde");
-                return RedirectToAction(nameof(Index));
+                Alert("Felicitaciones, Te has registrado exitosamente en esta Clase", NotificationType.success);
+                Thread.Sleep(2000);
+                return RedirectToAction("Index", "Clases");
             }
-            ViewData["ClaseId"] = new SelectList(_context.Clases, "ClaseId", "Name", registro.ClaseId);
-            ViewData["Id"] = new SelectList(_context.AspNetUsers, "Id", "Id", registro.Id);
+
             return View(registro);
         }
 
