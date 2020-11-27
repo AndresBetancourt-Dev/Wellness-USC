@@ -16,7 +16,7 @@ namespace Wellness_USC.Controllers
             switch (statusCode)
             {
                 case 404:
-                    ViewBag.ErrorMessage = "Error";
+                    ViewBag.ErrorMessage = "ERROR";
                     break;
             }
 
