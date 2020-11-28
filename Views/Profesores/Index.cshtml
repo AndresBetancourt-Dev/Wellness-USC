@@ -34,9 +34,9 @@
 @if (User.IsInRole("administrador") || User.IsInRole("profesor"))
 {
 <div class="profesor-options">
-    <a class="btn text-light" asp-action="Edit" asp-route-id="@item.ProfesorId">Edit</a>
-    <a class="btn text-light" asp-action="Details" asp-route-id="@item.ProfesorId">Details</a>
-    <a class="btn text-light" asp-action="Delete" asp-route-id="@item.ProfesorId">Delete</a>
+    <a class="btn text-light" asp-action="Edit" asp-route-id="@item.ProfesorId">Editar</a>
+    <a class="btn text-light" asp-action="Details" asp-route-id="@item.ProfesorId">Detalles</a>
+    <a class="btn text-light" asp-action="Delete" asp-route-id="@item.ProfesorId">Eliminar</a>
 </div>}}
 
         </div>

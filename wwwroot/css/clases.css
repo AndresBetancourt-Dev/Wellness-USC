@@ -1,55 +1,82 @@
-﻿.clase{
-    width: 100%;
-    height: 80%;
-    position: relative;
-    color: white;
-    border: none;
-    border-radius: 10px;
+﻿.clase {
+  width: 100%;
+  height: 80%;
+  position: relative;
+  color: white;
+  border: none;
+  border-radius: 10px;
 }
 
 .clase-image {
-    width: 100%;
-    height: 100%;
-    border-radius: 10px;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
 }
 
 .clase-content {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    align-items: center;
-    top: 0;
-    background: rgba(0,0,0,.5);
-    border-radius: 10px;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  top: 0;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
 }
 
-.clase-name{
-    padding-left: 10px;
+.clase-content-2 {
+  width: 92%;
+  height: 100%;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  top: 0;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
 }
 
-.clase-profesor{
-    width: 80%;
-    height: 100px;
-    display: flex;
-    align-items: center;
+@media screen and (min-width: 992px) {
+  .clase-content-2 {
+    width: 95%;
+  }
 }
 
-.clase-profesor-image{
-    width: 60px;
-    height: 50px;
-    border-radius: 50%;
+.clase-name {
+  padding-left: 10px;
 }
 
-    .clase-profesor-image img {
-        width: 100%;
-        height: 100%;
-        border-radius: 50%;
-    }
+.clase-profesor {
+  width: 80%;
+  height: 100px;
+  display: flex;
+  align-items: center;
+}
 
-.clase-profesor-name{
-    width: 100%;
-    text-align: center;
+.clase-profesor-image {
+  width: 60px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.clase-profesor-image-2 {
+  display: flex;
+  width: 110px;
+  height: 100px;
+  border-radius: 50%;
+}
+
+.clase-profesor-image img,
+.clase-profesor-image-2 img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.clase-profesor-name {
+  width: 100%;
+  text-align: center;
 }

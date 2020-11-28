@@ -45,11 +45,11 @@
                 <span asp-validation-for="EndHour" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="CursoId" class="control-label">@Html.DisplayNameFor(model => model.CursoId)</label>
+                <label  class="control-label">Curso</label>
                 <select asp-for="CursoId" class ="form-control" asp-items="ViewBag.CursoId"></select>
             </div>
             <div class="form-group">
-                <label asp-for="ProfesorId" class="control-label">@Html.DisplayNameFor(model => model.ProfesorId)</label>
+                <label  class="control-label">Profesor</label>
                 <select asp-for="ProfesorId" class ="form-control" asp-items="ViewBag.ProfesorId"></select>
             </div>
             <div class="form-group">
@@ -60,7 +60,7 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Volver a la Lista</a>
 </div>
 </div>
 

@@ -1,7 +1,11 @@
 ﻿@page
 @model ConfirmEmailModel
 @{
-    ViewData["Title"] = "Confirm email";
+
+    ViewData["Title"] = "Confirmar email";
 }
 
-<h1>@ViewData["Title"]</h1>
+<div class="container mt-5 success d-flex flex-column justify-content-center">
+    <h1 class="text-center">¡Registro Exitoso!</h1>
+    <a asp-area="Identity" asp-page="/Account/Login" class="mt-5 btn btn-usc p-3 w-100">Login</a>
+</div>

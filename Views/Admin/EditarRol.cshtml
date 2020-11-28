@@ -5,7 +5,7 @@
 }
 
 
-<form method="post">
+<form method="post" class="mb-5">
     <div asp-validation-summary="All" class="text-danger"></div>
     <div class="form-group">
         <label asp-for="Id"></label>
@@ -17,8 +17,8 @@
         <input asp-for="RoleName" class="form-control" />
         <span asp-validation-for="RoleName" class="text-danger"></span>
     </div>
-    <button type="submit" class="btn btn-block btn-primary font-poppins">Editar</button>
-    <a asp-action="Roles" class="btn btn-danger">Cancelar</a>
+    <button type="submit" class="btn btn-block btn-primary font-poppins my-2">Editar</button>
+    <a asp-action="Roles" class="btn btn-danger w-100 my-2 ">Cancelar</a>
 </form>
 
 <div class="card">

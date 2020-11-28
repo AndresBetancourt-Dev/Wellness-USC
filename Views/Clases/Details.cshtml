@@ -3,65 +3,64 @@
 @{
 
     ViewData["Title"] = "Detalles Clase";
+
 }
+<link rel="stylesheet" href="~/css/clases.css" />
+<div class="container mt-5">
 
-<h1>Details</h1>
-
-<div>
-    <h4>Clase</h4>
+    <h1 class="text-center">Detalles del Curso</h1>
     <hr />
-    <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Quantity)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Quantity)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.StartDate)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.StartDate)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.FinishDate)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.FinishDate)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.StartHour)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.StartHour)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.EndHour)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.EndHour)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Curso)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Curso.Name)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Profesor)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Profesor.FirstName)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.ClaseId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+
+    <div class="row">
+        <div class="col-md-6">
+            <h2 class="text-center">@Html.DisplayFor(model => model.Name)</h2>
+            <div class="row">
+                <div class="col-6">
+                    <div class="my-5">@Html.DisplayNameFor(model => model.Curso.Name): <span class="lead">
+                            @Html.DisplayFor(model => model.Curso.Name)</span> </div>
+
+                    <div class="my-5">@Html.DisplayNameFor(model => model.StartDate) <br> <span
+                            class="lead">@Html.DisplayFor(model
+                                                            => model.StartDate)</span>
+                    </div>
+                    <div class="my-5"> @Html.DisplayNameFor(model => model.StartHour) <br> <span class="lead"> @Html.DisplayFor(model
+                                                                                                                     => model.StartHour)</span>
+                    </div>
+                    
+                </div>
+                <div class="col-6">
+                    <div class="my-5">@Html.DisplayNameFor(model => model.Quantity): <span class="lead">@Html.DisplayFor(model =>
+                                                                                                          model.Quantity)</span> </div>
+
+
+                    <div class="my-5">@Html.DisplayNameFor(model => model.FinishDate) <br> <span class="lead">@Html.DisplayFor(model
+                                                                                                                    => model.FinishDate)</span>
+                    </div>
+                    <div class="my-5">@Html.DisplayNameFor(model => model.EndHour) <br> <span class="lead">@Html.DisplayFor(model
+                                                                                                                 => model.EndHour)</span>
+                    </div>
+                </div>
+                <a asp-controller="Registros" asp-action="Registrar" asp-route-id="@Model.ClaseId" class="btn btn-usc w-100 mt-5 h-100 p-5">Inscribirse</a>
+            </div>
+        </div>
+        <div class="col-md-6 clase mt-5">
+            <img src="@("~/assets/images/courses/"+Model.Curso.ImageName)" asp-append-version="true"
+                class="clase-image" />
+            <div class="clase-content-2">
+                <div class="clase-profesor pb-5">
+                    <div class="clase-profesor-image-2">
+                        <img src="@("~/assets/images/profesores/"+Model.Profesor.ImageName)"
+                            asp-append-version="true" />
+                    </div>
+                    <div class="clase-profesor-name">
+                        @Html.DisplayFor(modelItem => Model.Profesor.FullName)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <a asp-action="Index">Volver a la Lista</a>
+    </div>
+
 </div>

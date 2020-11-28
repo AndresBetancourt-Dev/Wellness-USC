@@ -35,6 +35,7 @@ namespace Wellness_USC.Controllers
         }
 
         // GET: Registroes
+        [Authorize(Roles = "administrador")]
         public async Task<IActionResult> Index()
         {
             var claseDbContext = _context.Registros.Include(r => r.Clase).Include(r => r.User);
@@ -42,6 +43,7 @@ namespace Wellness_USC.Controllers
         }
 
         // GET: Registroes/Details/5
+        [Authorize(Roles = "administrador")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -62,6 +64,7 @@ namespace Wellness_USC.Controllers
         }
 
         // GET: Registroes/Create
+        [Authorize(Roles = "administrador")]
         public IActionResult Create()
         {
             ViewData["ClaseId"] = new SelectList(_context.Clases, "ClaseId", "Name");
@@ -75,6 +78,7 @@ namespace Wellness_USC.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "administrador")]
         public async Task<IActionResult> Create([Bind("RegistroId,Id,ClaseId")] Registro registro)
         {
 
@@ -192,6 +196,7 @@ namespace Wellness_USC.Controllers
 
 
         // GET: Registroes/Edit/5
+        [Authorize(Roles = "administrador")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -214,6 +219,7 @@ namespace Wellness_USC.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "administrador")]
         public async Task<IActionResult> Edit(int id, [Bind("RegistroId,Id,ClaseId")] Registro registro)
         {
             if (id != registro.RegistroId)
@@ -247,6 +253,7 @@ namespace Wellness_USC.Controllers
         }
 
         // GET: Registroes/Delete/5
+        [Authorize(Roles = "administrador")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -269,6 +276,7 @@ namespace Wellness_USC.Controllers
         // POST: Registroes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "administrador")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var registro = await _context.Registros.FindAsync(id);

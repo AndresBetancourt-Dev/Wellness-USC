@@ -185,3 +185,9 @@ html {
     max-height: 70px;
   }
 }
+
+.error-404,
+.error,
+.success {
+  min-height: 50vh;
+}

@@ -5,3 +5,16 @@
 
     ViewData["Title"] = "Administración";
 }
+
+<div class="container mt-5">
+    <h1 class="text-center">@ViewData["Title"]</h1>
+
+    <div class="row">
+        <div class="col-12 my-5">
+            <a asp-action="Roles" class="btn btn-usc w-100 mt-2">Roles</a>
+        </div>
+        <div class="col-12 my-5">
+            <a asp-action="Index" asp-controller="Registros" class="btn btn-usc w-100 mt-2">Registros</a>
+        </div>
+    </div>
+</div>
