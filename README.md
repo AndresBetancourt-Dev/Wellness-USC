@@ -31,10 +31,8 @@ Nuestro proyecto utilizando esta arquitectura permitió que podamos desarrollar 
 ![Arquitectura](https://raw.githubusercontent.com/AndresBetancourt-Dev/Wellness-USC/master/docs/mvc-arquitectura.png)
 
 
-## Tutoriales
+## Tutoriales Utilizados
 https://www.youtube.com/watch?v=TuJd2Ez9i3I&ab_channel=kudvenkat - Para los Roles
 https://www.youtube.com/watch?v=QpJvqiHl1Fo&ab_channel=CodAffection - Subida de imagenes
-
-Coloco que tutoriales usamos en caso de que haya códigos similares en otros proyectos y se nos acuse de plagio.
 
 # Muchas Gracias
