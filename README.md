@@ -15,6 +15,7 @@ Nuestra Aplicación Permite
   - Crear Cursos, Manipular, Visualizar, Eliminar
   - Crear Clases en Base a estos Cursos, Manipular, Visualizar, Eliminar
   - Crear Profesores, Manipular, Visualizar, Eliminar
+  - Registrarse en las Clases deseadas
   - Registro y Login y Interfaz de Usuario gracias al Scaffolding de .NET
   - Vistas Estáticas Gimnasio, Salud, Centro Recreacional
   - Manejar Roles
